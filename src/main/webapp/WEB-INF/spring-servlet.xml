@@ -47,6 +47,11 @@
    		<property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
+    <bean id="loggerUtil" class="com.tanja.web_customer_tracker.util.LoggerUtil" init-method="initLogger">
+    	<property name="rootLoggerLevel" value="INFO" />
+    	<property name="parentLoggerLevel" value="INFO"/>
+    </bean>
+    
     <tx:annotation-driven transaction-manager="myTransactionManager"/>
     
     <mvc:resources mapping="/resources/**" location="/resources/" />
