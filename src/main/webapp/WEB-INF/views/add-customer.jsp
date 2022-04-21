@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page import="com.tanja.web_customer_tracker.model.GenderEnum" %>
 
 <!DOCTYPE html>
 <html>
@@ -28,6 +29,7 @@
 	
 		<form:form action="addCustomer" modelAttribute="customer" method="POST">
 			<form:hidden path="id" />
+			<form:hidden path="customerDetails.id" />
 			<table>
 				<tbody>
 					<tr>
@@ -43,6 +45,30 @@
 					<tr>
 						<td><label>Email:</label></td>
 						<td><form:input path="email" /></td>
+					</tr>
+					
+					<tr>
+						<td><label>Address:</label></td>
+						<td><form:input path="customerDetails.address" /></td>
+					</tr>
+					
+					<tr>
+						<td><label>Birthday:</label></td>
+						<td><form:input type="date" path="customerDetails.birthday" /></td>
+					</tr>
+					
+					<tr>
+						<td><label>Gender:</label></td>
+						<td>
+							<form:select path="customerDetails.gender">
+								<form:options items="${GenderEnum.values()}" />
+							</form:select>
+						</td>
+					</tr>
+					
+					<tr>
+						<td><label>Profile picture:</label></td>
+						<td><form:input type="file" path="customerDetails.profilePicture" /></td>
 					</tr>
 
 					<tr>
