@@ -66,4 +66,15 @@ public class CustomerController {
 		
 		return "redirect:/customer/list";
 	}
+	
+	@RequestMapping("/details")
+	public String showCustomerDetails(@RequestParam("customerId") int id, Model model) {
+		
+		Customer customer = customerService.getCustomerById(id);
+		
+		model.addAttribute("customer", customer);
+		model.addAttribute("customerBirthday", customer.getCustomerDetails().getBirthdayString());
+		
+		return "customer-details";
+	}
 }

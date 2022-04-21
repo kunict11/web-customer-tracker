@@ -1,5 +1,10 @@
 package com.tanja.web_customer_tracker.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -66,6 +71,14 @@ public class CustomerDetails {
 		return birthday;
 	}
 
+	public String getBirthdayString() {
+		
+		DateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+		String birthdayString = formatter.format(birthday);
+		
+		return birthdayString;
+	}
+	
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}

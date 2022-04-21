@@ -38,6 +38,7 @@
 					<th>Last Name</th>
 					<th>Email</th>
 					<th>Action</th>
+					<th> </th>
 				</tr>
 				
 				<!-- loop over and print our customers -->
@@ -48,6 +49,10 @@
 					</c:url>
 					
 					<c:url var="deleteCustomer" value="/customer/deleteCustomer" >
+						<c:param name="customerId" value="${ tempCustomer.id }" />
+					</c:url>
+					
+					<c:url var="showDetails" value="/customer/details" >
 						<c:param name="customerId" value="${ tempCustomer.id }" />
 					</c:url>
 				
@@ -61,6 +66,9 @@
 								onclick="if(!confirm('Are you sure?')) return false;">
 								Delete
 							</a>							 
+						</td>
+						<td>
+							<a href="${showDetails}">Details</a>
 						</td>
 					</tr>
 				</c:forEach>
