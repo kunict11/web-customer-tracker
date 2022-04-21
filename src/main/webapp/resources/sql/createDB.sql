@@ -18,7 +18,7 @@ id int auto_increment not null primary key,
 address varchar(200), 
 birthday date,
 gender varchar(7),
-profile_picture blob
+profile_picture mediumblob
 -- foreign key(address_id)
 -- 	references address(id)
 );

@@ -1,5 +1,6 @@
 package com.tanja.web_customer_tracker.controller;
 
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,11 @@ public class CustomerController {
 		
 		model.addAttribute("customer", customer);
 		model.addAttribute("customerBirthday", customer.getCustomerDetails().getBirthdayString());
+		
+		if(customer.getCustomerDetails().getProfilePicture() != null) {
+			String photo = Base64.getEncoder().encodeToString(customer.getCustomerDetails().getProfilePicture());
+			model.addAttribute("customerPhoto", photo);
+		}
 		
 		return "customer-details";
 	}
