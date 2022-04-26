@@ -29,7 +29,14 @@ public class CustomerRestController {
 	
 	@GetMapping("/customers/{id}")
 	public Customer getAllCustomers(@PathVariable int id) {
-		return customerService.getCustomerById(id);
+		
+		Customer customer = customerService.getCustomerById(id);
+		
+		if (customer == null) {
+			throw new CustomerNotFoundException("Customer wid id " + id + " doesn't exist");
+		}
+		
+		return customer;
 	}
 	
 	@PostMapping("/customers")
@@ -50,6 +57,11 @@ public class CustomerRestController {
 	
 	@DeleteMapping("/customers/{id}")
 	public String deleteCustomer(@PathVariable int id) {
+		
+		if (customerService.getCustomerById(id) == null) {
+			throw new CustomerNotFoundException("Unable to delete: No customer found with id " + id);
+		}
+		
 		customerService.deleteCustomer(id);
 		
 		return "Successfully deleted customer";
