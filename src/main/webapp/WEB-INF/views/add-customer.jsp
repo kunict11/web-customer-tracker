@@ -27,7 +27,7 @@
 	<div id="container">
 		<h3>Save Customer</h3>
 	
-		<form:form action="addCustomer" modelAttribute="customer" method="POST">
+		<form:form action="addCustomer" modelAttribute="customer" method="POST" enctype="multipart/form-data">
 			<form:hidden path="id" />
 			<form:hidden path="customerDetails.id" />
 			<table>
@@ -68,7 +68,7 @@
 					
 					<tr>
 						<td><label>Profile picture:</label></td>
-						<td><form:input type="file" path="customerDetails.profilePicture" /></td>
+						<td><input type="file" name="photo"/></td>
 					</tr>
 
 					<tr>

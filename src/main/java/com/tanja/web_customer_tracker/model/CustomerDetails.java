@@ -34,7 +34,7 @@ public class CustomerDetails {
 	private GenderEnum gender;
 	
 	@Lob
-	@Column(name = "profile_picture", columnDefinition = "MEDIUMBLOB")
+	@Column(name = "profile_picture", columnDefinition = "mediumblob")
 	private byte[] profilePicture;
 	
 	

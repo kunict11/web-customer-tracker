@@ -1,5 +1,8 @@
 package com.tanja.web_customer_tracker.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
@@ -7,6 +10,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -14,6 +18,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.tanja.web_customer_tracker.model.Customer;
 import com.tanja.web_customer_tracker.service.CustomerService;
@@ -53,10 +59,16 @@ public class CustomerController {
 		return "add-customer";
 	}
 	
-	@RequestMapping("/addCustomer")
-	public String addCustomer(@ModelAttribute("customer") Customer theCustomer) {
-		System.out.println(theCustomer);
-		
+	@RequestMapping(path = "/addCustomer", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+	public String addCustomer(@ModelAttribute("customer") Customer theCustomer, @RequestPart("photo") MultipartFile photo) {
+        
+        try {
+			theCustomer.getCustomerDetails().setProfilePicture(photo.getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
 		customerService.addCustomer(theCustomer);
 		
 		return "redirect:/customer/list";
