@@ -65,7 +65,6 @@ public class CustomerController {
         try {
 			theCustomer.getCustomerDetails().setProfilePicture(photo.getBytes());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         
