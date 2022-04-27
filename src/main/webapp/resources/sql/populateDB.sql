@@ -49,3 +49,57 @@ values(4, 'Boba', 'Bobic', 'boba@gmail.com', 4);
 
 insert into customer
 values(5, 'Mile', 'Milic', 'mile@gmail.com', 5);
+
+-- populate project
+insert into project 
+values(1, 'Netflix', 'microservice');
+
+insert into project 
+values(2, 'Adobe Photoshop', 'monolith');
+
+insert into project
+values(3, 'Windows', 'OS');
+
+-- populate bug
+insert into bug
+values(1, 'monolith', 'Crashes on launch or while opening a video due to the presence of external plugins like Adobe Design to Print.', 'HIGH', 'UNRESOLVED');
+
+insert into bug
+values(2, 'monolith', 'In Photoshop 23.0, text changes do not update.', 'HIGH', 'UNRESOLVED');
+
+insert into bug
+values(3, 'OS', 'IE11 data might not be accessible after upgrading to Windows 11', 'NORMAL', 'RESOLVED');
+
+insert into bug
+values(4, 'microservice', 'Plays same episode again instead of playing the next one.', 'LOW', 'IN_PROGRESS');
+
+insert into bug
+values(5, 'OS', 'Files might persist after resetting a Windows device', 'NORMAL', 'IN_PROGRESS');
+
+insert into bug
+values(6, 'OS', 'Snipping Tool and some built-in applications might not open or work as expected', 'LOW', 'RESOLVED');
+
+insert into bug
+values(7, 'OS', 'UI elements and drawing within some apps may not work as expected', 'HIGH', 'RESOLVED');
+
+-- populate project_bug
+insert into project_bug
+values(1, 4);
+
+insert into project_bug
+values(2, 1);
+
+insert into project_bug
+values(2, 2);
+
+insert into project_bug
+values(3, 3);
+
+insert into project_bug
+values(3, 5);
+
+insert into project_bug
+values(3, 6);
+
+insert into project_bug
+values(3, 7);
