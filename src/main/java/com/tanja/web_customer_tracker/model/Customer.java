@@ -1,11 +1,14 @@
 package com.tanja.web_customer_tracker.model;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,14 +28,19 @@ public class Customer {
 	
 	@Column(name = "email")
 	private String email;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "customer_details_id")
+	private CustomerDetails customerDetails;
 
 	public Customer() {
 	}
 	
-	public Customer(String firstName, String lastname, String email) {
+	public Customer(String firstName, String lastname, String email, CustomerDetails customerDetails) {
 		this.firstName = firstName;
 		this.lastName = lastname;
 		this.email = email;
+		this.customerDetails = customerDetails;
 	}
 
 	public int getId() {
@@ -65,6 +73,14 @@ public class Customer {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public CustomerDetails getCustomerDetails() {
+		return customerDetails;
+	}
+
+	public void setCustomerDetails(CustomerDetails customerDetails) {
+		this.customerDetails = customerDetails;
 	}
 
 	@Override
