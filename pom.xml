@@ -13,7 +13,6 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<spring.version>5.3.18</spring.version>
-		<cglib.version>2.2.2</cglib.version>
 		<slf4j.version>1.7.25</slf4j.version>
 	</properties>
 
@@ -49,16 +48,6 @@
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- CGLib for @Configuration -->
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-nodep</artifactId>
-			<version>${cglib.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		
-		
 
 		<!-- Servlet Spec -->
 		<dependency>
@@ -103,6 +92,12 @@
 		    <artifactId>javax.persistence-api</artifactId>
 		    <version>2.2</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.5</version>
+		</dependency>	
 		
 		<dependency>
 		    <groupId>commons-fileupload</groupId>
