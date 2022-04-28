@@ -1,0 +1,42 @@
+html, body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.split-columns {
+	display: flex;
+}
+
+.project-container {
+	margin: 3rem;
+	flex: 50%;
+}
+
+.details-container {
+	display: flex;
+	padding: 5px;
+	border: 2px solid #4da94de0;
+	align-content: center;
+	margin-top: 10px;
+	width: 300px;
+	flex-direction: column;
+	text-align: center;
+}
+
+.details-container p {
+	margin-top: -1rem;
+}
+
+.form-container {
+	flex: 50%;
+	margin: 3rem;
+	padding: 25px;
+}
+
+.bug-desc {
+	display: flex;
+	flex-direction: column;
+}
+
+.bug-desc textarea {
+	margin-top: 1rem;
+}
