@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.tanja.web_customer_tracker.model.Priority" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,29 +30,36 @@
 			</div>
 		
 			<div class="form-container">
-				<form>
+				<form:form action="reportBug" modelAttribute="bug" method="POST">
 					<div class="bug-desc">
 						<label>Bug description:</label>
-						<textarea rows="4" cols="64">
-						</textarea>
+						<form:textarea rows="4" cols="64" path="bug.description" />
 					</div>
-					<select>
-						<c:forEach var="project" items="${projects}">
-							<option value="${project.id}" label="${project.name}"/>				
+					<form:select path="bug.priority">
+						<form:options items="${Priority.values()}"/>				
+					</form:select>
+					
+					<form:input type="text" path="bug.component" />
+					
+					<div>
+						<label>Priority</label>
+						
+						<c:forEach var="priority" items="${Priority.values()}">
+							<label>${priority}</label>
+							<input type="radio" value="${priority}" />
 						</c:forEach>
-					</select>
-				</form>
-				<label>Priority</label>
-				<div>
-					<label>Low</label>
-					<input type="radio" value="LOW" />
+						<label>Low</label>
+						<input type="radio" value="LOW" />
+						
+						<label>Normal</label>
+						<input type="radio" value="NORMAL" />
+						
+						<label>High</label>
+						<input type="radio" value="HIGH" />
+					</div>
 					
-					<label>Normal</label>
-					<input type="radio" value="NORMAL" />
-					
-					<label>High</label>
-					<input type="radio" value="HIGH" />
-				</div>
+					<input type="submit" value="Report" />
+				</form:form>
 			</div>
 
 		</div>
