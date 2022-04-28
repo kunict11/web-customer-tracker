@@ -1,77 +1,75 @@
-package com.tanja.web_customer_tracker.DAO;
+package com.tanja.web_customer_tracker.DAO.bug;
 
 import java.util.List;
 
-import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.tanja.web_customer_tracker.model.Project;
+import com.tanja.web_customer_tracker.model.bug.Bug;
 
 @Repository
-public class ProjectDAOImpl implements ProjectDAO {
+public class BugDAOImpl implements BugDAO {
 
 	@Autowired
 	private SessionFactory sf;
+
+	@Override
+	public List<Bug> getAllBugs() {
+		
+		Session session = sf.getCurrentSession();
+		
+		session.beginTransaction();
+		
+		Query<Bug> query = session.createQuery("from Bug", Bug.class);
+		List<Bug> bugs = query.getResultList();
+		
+		session.getTransaction().commit();
+		
+		return bugs;
+	}
+
+	@Override
+	public Bug getBug(int id) {
+		
+		Session session = sf.getCurrentSession();
+		
+		session.beginTransaction();
+		
+		Bug bug = session.get(Bug.class, id);
+		
+		session.getTransaction().commit();
+		
+		return bug;
+	}
+
+	@Override
+	public void saveBug(Bug bug) {
+		
+		Session session = sf.getCurrentSession();
+		
+		session.beginTransaction();
+		
+		session.saveOrUpdate(bug);
+		
+		session.getTransaction().commit();
+		
+	}
+
+	@Override
+	public void deleteBug(int id) {
+		
+		Session session = sf.getCurrentSession();
+		
+		session.beginTransaction();
+		
+		Bug bug = session.get(Bug.class, id);
+		session.delete(bug);
+		
+		session.getTransaction().commit();
+	}
 	
-	@Override
-	public List<Project> getAllProjects() {
-		
-		Session session = sf.getCurrentSession();
-		
-		session.beginTransaction();
-		
-		Query<Project> query = session.createQuery("from Project", Project.class);
-		List<Project> projects = query.getResultList();
-		
-		session.getTransaction().commit();		
-		
-		return projects;
-	}
-
-	@Override
-	public Project getProject(int id) {
-		
-		Session session = sf.getCurrentSession();
-		
-		session.beginTransaction();
-		
-		Project project = session.get(Project.class, id);
-		
-		session.getTransaction().commit();
-		
-		return project;
-	}
-
-	@Override
-	public void saveProject(Project project) {
-		
-		Session session = sf.getCurrentSession();
-		
-		session.beginTransaction();
-		
-		session.saveOrUpdate(project);
-		
-		session.getTransaction().commit();
-	}
-
-	@Override
-	public void deleteProject(int id) {
-		
-		Session session = sf.getCurrentSession();
-		
-		session.beginTransaction();
-		
-		Project project = session.get(Project.class, id);
-		
-		session.delete(project);
-		
-		session.getTransaction().commit();
-		
-	}
-
-
-
+	
 }

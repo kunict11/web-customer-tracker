@@ -1,4 +1,4 @@
-package com.tanja.web_customer_tracker.DAO;
+package com.tanja.web_customer_tracker.DAO.customer;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.tanja.web_customer_tracker.model.Customer;
+import com.tanja.web_customer_tracker.model.customer.Customer;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {

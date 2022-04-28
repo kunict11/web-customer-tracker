@@ -1,4 +1,4 @@
-package com.tanja.web_customer_tracker.service;
+package com.tanja.web_customer_tracker.service.project;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tanja.web_customer_tracker.DAO.ProjectDAO;
-import com.tanja.web_customer_tracker.model.Project;
+import com.tanja.web_customer_tracker.DAO.project.ProjectDAO;
+import com.tanja.web_customer_tracker.model.project.Project;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {

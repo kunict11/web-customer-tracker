@@ -1,8 +1,8 @@
-package com.tanja.web_customer_tracker.DAO;
+package com.tanja.web_customer_tracker.DAO.bug;
 
 import java.util.List;
 
-import com.tanja.web_customer_tracker.model.Bug;
+import com.tanja.web_customer_tracker.model.bug.Bug;
 
 public interface BugDAO {
 	

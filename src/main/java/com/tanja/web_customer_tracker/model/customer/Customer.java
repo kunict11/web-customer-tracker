@@ -1,4 +1,4 @@
-package com.tanja.web_customer_tracker.model;
+package com.tanja.web_customer_tracker.model.customer;
 
 
 import javax.persistence.CascadeType;

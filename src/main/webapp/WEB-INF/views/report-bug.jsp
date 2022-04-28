@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="com.tanja.web_customer_tracker.model.Priority" %>
+<%@ page import="com.tanja.web_customer_tracker.model.bug.Priority" %>
 
 <!DOCTYPE html>
 <html>

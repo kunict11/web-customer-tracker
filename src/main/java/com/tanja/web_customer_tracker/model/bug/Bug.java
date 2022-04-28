@@ -1,4 +1,4 @@
-package com.tanja.web_customer_tracker.model;
+package com.tanja.web_customer_tracker.model.bug;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.tanja.web_customer_tracker.model.project.Project;
 
 @Entity
 @Table(name = "bug")

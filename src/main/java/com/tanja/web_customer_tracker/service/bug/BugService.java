@@ -1,8 +1,8 @@
-package com.tanja.web_customer_tracker.service;
+package com.tanja.web_customer_tracker.service.bug;
 
 import java.util.List;
 
-import com.tanja.web_customer_tracker.model.Bug;
+import com.tanja.web_customer_tracker.model.bug.Bug;
 
 public interface BugService {
 

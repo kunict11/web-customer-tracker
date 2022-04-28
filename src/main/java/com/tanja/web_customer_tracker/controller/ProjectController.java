@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.tanja.web_customer_tracker.model.Customer;
-import com.tanja.web_customer_tracker.model.Project;
-import com.tanja.web_customer_tracker.service.ProjectService;
+import com.tanja.web_customer_tracker.model.customer.Customer;
+import com.tanja.web_customer_tracker.model.project.Project;
+import com.tanja.web_customer_tracker.service.project.ProjectService;
 
 @Controller
 @RequestMapping("/project")

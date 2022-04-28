@@ -1,4 +1,4 @@
-package com.tanja.web_customer_tracker.service;
+package com.tanja.web_customer_tracker.service.bug;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tanja.web_customer_tracker.DAO.BugDAO;
-import com.tanja.web_customer_tracker.model.Bug;
+import com.tanja.web_customer_tracker.DAO.bug.BugDAO;
+import com.tanja.web_customer_tracker.model.bug.Bug;
 
 @Service
 public class BugServiceImpl implements BugService {

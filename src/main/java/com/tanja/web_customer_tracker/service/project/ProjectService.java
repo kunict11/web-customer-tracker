@@ -1,8 +1,8 @@
-package com.tanja.web_customer_tracker.service;
+package com.tanja.web_customer_tracker.service.project;
 
 import java.util.List;
 
-import com.tanja.web_customer_tracker.model.Project;
+import com.tanja.web_customer_tracker.model.project.Project;
 
 public interface ProjectService {
 
