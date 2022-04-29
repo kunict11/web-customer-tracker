@@ -14,4 +14,6 @@ public interface ProjectDAO {
 	
 	public void deleteProject(int id);
 	
+	public List<Project> getAllProjectsWithBugs();
+	
 }

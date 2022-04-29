@@ -14,4 +14,5 @@ public interface ProjectService {
 	
 	public void deleteProject(int id);
 	
+	public List<Project> getAllProjectsWithBugs();
 }

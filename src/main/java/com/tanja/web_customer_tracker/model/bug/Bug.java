@@ -114,5 +114,13 @@ public class Bug {
 		
 		projects.add(project);
 	}
+
+	@Override
+	public String toString() {
+		return "Bug [description=" + description + ", component=" + component + ", priority=" + priority + ", status="
+				+ status + "]";
+	}
+	
+	
 	
 }

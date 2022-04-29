@@ -39,6 +39,12 @@ public class ProjectServiceImpl implements ProjectService {
 	public void deleteProject(int id) {
 		projectDao.deleteProject(id);
 	}
+
+	@Override
+	@Transactional
+	public List<Project> getAllProjectsWithBugs() {
+		return projectDao.getAllProjectsWithBugs();
+	}
 	
 	
 	

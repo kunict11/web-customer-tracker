@@ -59,7 +59,7 @@ public class ProjectController {
 		
 		bugService.saveBug(bug);
 		
-		return "bug-list";
+		return "redirect:/project/bugList";
 	} 
 	
 	@RequestMapping("/details/{id}")
@@ -71,5 +71,20 @@ public class ProjectController {
 
 		
 		return "project-details";
+	}
+	
+	@RequestMapping("/bugList")
+	public String bugList(Model model) {
+		
+		List<Project> projects = projectService.getAllProjectsWithBugs();
+		
+		for (Project project : projects) {
+			System.out.println(project.getBugs());
+		}
+		
+		model.addAttribute("projects", projects);
+		
+		
+		return "bug-list";
 	}
 }
