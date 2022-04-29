@@ -77,11 +77,7 @@ public class ProjectController {
 	public String bugList(Model model) {
 		
 		List<Project> projects = projectService.getAllProjectsWithBugs();
-		
-		for (Project project : projects) {
-			System.out.println(project.getBugs());
-		}
-		
+
 		model.addAttribute("projects", projects);
 		
 		

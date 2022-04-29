@@ -6,7 +6,9 @@
 
 <head>
 	<title>Bugs</title>
-	
+	<link type="text/css"
+	  rel="stylesheet"
+	  href="${pageContext.request.contextPath}/resources/styles/bug-list.css" />
 
 </head>
 
@@ -23,7 +25,7 @@
 		
 			<div>
 			
-				<table>
+				<table class="bug-table">
 					<tr>
 						<th>Bug</th>
 						<th>Project</th>
@@ -36,11 +38,11 @@
 						<c:forEach var="bug" items="${project.bugs}">	
 						
 							<tr>
-								<td> ${bug.description} </td>
-								<td> ${project.name} </td>
-								<td> ${bug.component} </td>
-								<td> ${bug.priority} </td>
-								<td> ${bug.status}</td>
+								<td class="desc"> ${bug.description} </td>
+								<td class="table-data"> ${project.name} </td>
+								<td class="table-data"> ${bug.component} </td>
+								<td class="table-data"> ${bug.priority} </td>
+								<td class="table-data"> ${bug.status}</td>
 							</tr>
 						</c:forEach>
 					</c:forEach>

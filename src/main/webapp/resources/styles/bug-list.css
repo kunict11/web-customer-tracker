@@ -3,6 +3,26 @@ html, body {
 }
 
 .container {
-    margin: 5rem 3rem;
+    margin: 3rem 5rem;
 }
 
+.bug-table {
+    border-collapse: collapse;
+    width: 80%;
+}
+
+.bug-table th, td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.desc {
+    overflow-x: visible;
+    white-space: pre-wrap;
+    text-align: justify;
+}
+
+.table-data {
+    text-align: center;
+    vertical-align: middle;
+}

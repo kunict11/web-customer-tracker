@@ -89,7 +89,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		
 		session.getTransaction().commit();		
 		
-		return null;
+		return projects;
 	}
 
 	
