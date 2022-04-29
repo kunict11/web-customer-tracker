@@ -11,7 +11,7 @@
 
 	<link type="text/css"
 		  rel="stylesheet"
-		  href="${pageContext.request.contextPath}/resources/styles/report-bug.css" />
+		  href="${pageContext.request.contextPath}/resources/styles/style.css" />
 
 </head>
 

@@ -53,6 +53,10 @@ public class Bug {
 		this.component = component;
 		this.priority = priority;
 		this.status = status;
+		
+		if (status == null) {
+			this.status = Status.UNRESOLVED;
+		}
 	}
 
 	public int getId() {

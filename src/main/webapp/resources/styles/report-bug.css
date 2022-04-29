@@ -40,3 +40,17 @@ html, body {
 .bug-desc textarea {
 	margin-top: 1rem;
 }
+
+.field-wrap {
+	margin-top: 1rem;
+}
+
+.field-wrap label {
+	margin-bottom: 0.75rem;
+}
+
+.submit-btn {
+	margin-top: 2rem;
+	width: 90px;
+	height: 30px;
+}

@@ -33,32 +33,34 @@
 				<form:form action="reportBug" modelAttribute="bug" method="POST">
 					<div class="bug-desc">
 						<label>Bug description:</label>
-						<form:textarea rows="4" cols="64" path="bug.description" />
-					</div>
-					<form:select path="bug.priority">
-						<form:options items="${Priority.values()}"/>				
-					</form:select>
-					
-					<form:input type="text" path="bug.component" />
-					
-					<div>
-						<label>Priority</label>
-						
-						<c:forEach var="priority" items="${Priority.values()}">
-							<label>${priority}</label>
-							<input type="radio" value="${priority}" />
-						</c:forEach>
-						<label>Low</label>
-						<input type="radio" value="LOW" />
-						
-						<label>Normal</label>
-						<input type="radio" value="NORMAL" />
-						
-						<label>High</label>
-						<input type="radio" value="HIGH" />
+						<form:textarea rows="4" cols="64" path="description" />
 					</div>
 					
-					<input type="submit" value="Report" />
+					<div class="field-wrap">
+						<label>Project: </label>
+						<select name="selectedProject">
+							<c:forEach var="project" items="${projects}">
+								<option value="${project.id}" label="${project.name}" />				
+							</c:forEach>
+						</select>
+					</div>
+					
+					<div class="field-wrap">
+						<label>Component: </label>
+						<form:input type="text" path="component" />
+						
+					</div>
+					<div class="field-wrap">
+						<label>Priority: </label>
+						<div style="margin-top:5px;">
+							<c:forEach var="priority" items="${Priority.values()}">
+								<label>${priority}</label>
+								<form:radiobutton value="${priority}" path="priority" />
+							</c:forEach>
+						</div>
+					</div>
+					
+					<input class="submit-btn" type="submit" value="Report" />
 				</form:form>
 			</div>
 
