@@ -17,6 +17,7 @@ import com.tanja.web_customer_tracker.model.customer.Customer;
 import com.tanja.web_customer_tracker.service.customer.CustomerService;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api")
 public class CustomerRestController {
 
