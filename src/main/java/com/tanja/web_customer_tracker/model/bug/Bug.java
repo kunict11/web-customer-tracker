@@ -17,6 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tanja.web_customer_tracker.model.customer.Customer;
 import com.tanja.web_customer_tracker.model.project.Project;
 
@@ -43,11 +44,12 @@ public class Bug {
 	@Column(name = "status")
 	private Status status;
 	
+	@JsonIgnore
 	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinTable(name = "project_bug", joinColumns = @JoinColumn(name = "bug_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
 	private List<Project> projects;
 	
-	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
