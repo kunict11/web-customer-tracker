@@ -33,10 +33,15 @@
 						<th>Priority</th>
 						<th>Reported By</th>
 						<th>Status</th>
+						<th> </th>
 					</tr>
 					
 					<c:forEach var="project" items="${projects}">
 						<c:forEach var="bug" items="${project.bugs}">	
+						
+						<c:url var="showStatus" value="/bug/bugStatus" >
+							<c:param name="bugId" value="${ bug.id }" />
+						</c:url>
 						
 							<tr>
 								<td class="desc"> ${bug.description} </td>
@@ -45,6 +50,7 @@
 								<td class="table-data"> ${bug.priority} </td>
 								<td class="table-data"> ${bug.customer.firstName} ${bug.customer.lastName} </td>
 								<td class="table-data"> ${bug.status}</td>
+								<td class="table-data"> <a href="${showStatus}">Edit status</a></td>
 							</tr>
 						</c:forEach>
 					</c:forEach>
