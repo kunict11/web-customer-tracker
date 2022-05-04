@@ -31,6 +31,7 @@
 						<th>Project</th>
 						<th>Component</th>
 						<th>Priority</th>
+						<th>Reported By</th>
 						<th>Status</th>
 					</tr>
 					
@@ -42,6 +43,7 @@
 								<td class="table-data"> ${project.name} </td>
 								<td class="table-data"> ${bug.component} </td>
 								<td class="table-data"> ${bug.priority} </td>
+								<td class="table-data"> ${bug.customer.firstName} ${bug.customer.lastName} </td>
 								<td class="table-data"> ${bug.status}</td>
 							</tr>
 						</c:forEach>

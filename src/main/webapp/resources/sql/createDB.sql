@@ -47,7 +47,10 @@ id int auto_increment not null primary key,
 component varchar(20),
 description varchar(256),
 priority varchar(20),
-status varchar(20)
+status varchar(20),
+customer_id int not null,
+foreign key(customer_id)
+	references customer(id)
 );
 
 drop table if exists project_bug;

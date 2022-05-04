@@ -10,6 +10,8 @@ public interface CustomerService {
 	
 	public Customer getCustomerById(int id);
 	
+	public Customer getCustomerByEmail(String email);
+	
 	public void addCustomer(Customer c);
 	
 	public void deleteCustomer(int customerId);

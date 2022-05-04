@@ -14,5 +14,7 @@ public interface CustomerDAO {
 	public void saveCustomer(Customer c);
 	
 	public void deleteCustomer(int customerId);
+	
+	public Customer findByEmail(String email);
 
 }

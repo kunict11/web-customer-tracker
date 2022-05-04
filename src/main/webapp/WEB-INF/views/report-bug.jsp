@@ -50,6 +50,12 @@
 						<form:input type="text" path="component" />
 						
 					</div>
+					
+					<div class="field-wrap">
+						<label>Customer e-mail: </label>
+						<input type="email" name="customerEmail"/>
+					</div>
+					
 					<div class="field-wrap">
 						<label>Priority: </label>
 						<div style="margin-top:5px;">

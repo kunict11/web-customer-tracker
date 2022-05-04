@@ -1,6 +1,9 @@
 package com.tanja.web_customer_tracker.model.customer;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.tanja.web_customer_tracker.model.bug.Bug;
 
 @Entity
 @Table(name = "customer")
@@ -32,6 +38,9 @@ public class Customer {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_details_id")
 	private CustomerDetails customerDetails;
+	
+	@OneToMany(mappedBy = "customer", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	private List<Bug> reportedBugs;
 
 	public Customer() {
 	}
@@ -81,6 +90,23 @@ public class Customer {
 
 	public void setCustomerDetails(CustomerDetails customerDetails) {
 		this.customerDetails = customerDetails;
+	}
+	
+	public List<Bug> getReportedBugs() {
+		return reportedBugs;
+	}
+
+	public void setReportedBugs(List<Bug> reportedBugs) {
+		this.reportedBugs = reportedBugs;
+	}
+	
+	public void reportBug(Bug bug) {
+		if (reportedBugs == null) {
+			reportedBugs = new ArrayList<>();
+		}
+		
+		reportedBugs.add(bug);
+		bug.setCustomer(this);
 	}
 
 	@Override

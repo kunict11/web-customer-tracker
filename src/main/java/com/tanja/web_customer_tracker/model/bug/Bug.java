@@ -14,8 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.tanja.web_customer_tracker.model.customer.Customer;
 import com.tanja.web_customer_tracker.model.project.Project;
 
 @Entity
@@ -45,10 +47,14 @@ public class Bug {
 	@JoinTable(name = "project_bug", joinColumns = @JoinColumn(name = "bug_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
 	private List<Project> projects;
 	
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinColumn(name = "customer_id")
+	private Customer customer;
+	
 	public Bug() {
 	}
 
-	public Bug(String description, String component, Priority priority, Status status) {
+	public Bug(String description, String component, Priority priority, Status status, Customer customer) {
 		this.description = description;
 		this.component = component;
 		this.priority = priority;
@@ -57,6 +63,8 @@ public class Bug {
 		if (status == null) {
 			this.status = Status.UNRESOLVED;
 		}
+		
+		this.customer = customer;
 	}
 
 	public int getId() {
@@ -115,10 +123,18 @@ public class Bug {
 		projects.add(project);
 	}
 
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 	@Override
 	public String toString() {
 		return "Bug [description=" + description + ", component=" + component + ", priority=" + priority + ", status="
-				+ status + "]";
+				+ status + " reported by " + customer.getFirstName() + " " + customer.getLastName() + "]";
 	}
 	
 	
