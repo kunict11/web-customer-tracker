@@ -17,6 +17,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tanja.web_customer_tracker.model.bug.Bug;
 import com.tanja.web_customer_tracker.model.developer.Developer;
 
@@ -38,7 +40,8 @@ public class Project {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "project_id")
 	private List<Developer> developers;
-	
+
+	@JsonIgnore
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinTable(name = "project_bug", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "bug_id"))
 	private List<Bug> bugs;

@@ -28,6 +28,10 @@ public class BugDAOImpl implements BugDAO {
 		Query<Bug> query = session.createQuery("from Bug", Bug.class);
 		List<Bug> bugs = query.getResultList();
 		
+		for (Bug bug : bugs) {
+			Hibernate.initialize(bug.getProjects());
+		}
+		
 		session.getTransaction().commit();
 		
 		return bugs;

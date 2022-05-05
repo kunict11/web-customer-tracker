@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tanja.web_customer_tracker.model.bug.Bug;
 
 @Entity
@@ -39,6 +40,7 @@ public class Customer {
 	@JoinColumn(name = "customer_details_id")
 	private CustomerDetails customerDetails;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "customer", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	private List<Bug> reportedBugs;
 
