@@ -29,14 +29,11 @@ public class BugRestController {
 	private BugService bugService;
 	
 	@Autowired
-	private ProjectService projectService;
-	
-	@Autowired
 	private CustomerService customerService;
 	
 	@GetMapping("/bugs")
-	public List<Project> getAllProjectsWithBugs() {
-		return projectService.getAllProjectsWithBugs();
+	public List<Bug> getAllBugs() {
+		return bugService.getAllBugs();
 	}
 	
 	@GetMapping("/bugs/{id}")
@@ -58,14 +55,6 @@ public class BugRestController {
 		
 		Customer customer = customerService.getCustomerByEmail(bug.getCustomer().getEmail());
 		customer.reportBug(bug);
-		
-		bugService.saveBug(bug);
-		
-		return bug;
-	}
-	
-	@PutMapping("/bugs")
-	public Bug changeBugStatus(@RequestBody Bug bug) {
 		
 		bugService.saveBug(bug);
 		

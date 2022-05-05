@@ -2,6 +2,7 @@ package com.tanja.web_customer_tracker.DAO.bug;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -26,6 +27,10 @@ public class BugDAOImpl implements BugDAO {
 		Query<Bug> query = session.createQuery("from Bug", Bug.class);
 		List<Bug> bugs = query.getResultList();
 		
+		for (Bug bug : bugs) {
+			Hibernate.initialize(bug.getProjects());
+		}
+		
 		session.getTransaction().commit();
 		
 		return bugs;
@@ -39,6 +44,7 @@ public class BugDAOImpl implements BugDAO {
 		session.beginTransaction();
 		
 		Bug bug = session.get(Bug.class, id);
+		Hibernate.initialize(bug.getProjects());
 		
 		session.getTransaction().commit();
 		

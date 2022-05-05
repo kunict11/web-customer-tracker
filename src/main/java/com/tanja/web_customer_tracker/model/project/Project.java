@@ -34,6 +34,7 @@ public class Project {
 	@Column(name = "component")
 	private String component;
 	
+	@JsonIgnore
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinTable(name = "project_bug", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "bug_id"))
 	private List<Bug> bugs;
