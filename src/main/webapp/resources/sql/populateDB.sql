@@ -60,27 +60,40 @@ values(2, 'Adobe Photoshop', 'monolith');
 insert into project
 values(3, 'Windows', 'OS');
 
+-- populate developer
+insert into developer
+values(1, 'Bob', 'Bobbins', 'bob@netflix.com', 1);
+
+insert into developer
+values(2, 'John', 'Doe', 'john@microsoft.com', 3);
+
+insert into developer
+values(3, 'Jane', 'Doe', 'jane@microsoft.com', 3);
+
+insert into developer
+values(4, 'Sava', 'Savic', 'bob@adobe.com', 2);
+
 -- populate bug
 insert into bug
-values(1, 'monolith', 'Crashes on launch or while opening a video due to the presence of external plugins like Adobe Design to Print.', 'HIGH', 'UNRESOLVED', 1);
+values(1, 'monolith', 'Crashes on launch or while opening a video due to the presence of external plugins like Adobe Design to Print.', 'HIGH', 'UNRESOLVED', 1, null);
 
 insert into bug
-values(2, 'monolith', 'In Photoshop 23.0, text changes do not update.', 'HIGH', 'UNRESOLVED', 1);
+values(2, 'monolith', 'In Photoshop 23.0, text changes do not update.', 'HIGH', 'UNRESOLVED', 1, null);
 
 insert into bug
-values(3, 'OS', 'IE11 data might not be accessible after upgrading to Windows 11', 'NORMAL', 'RESOLVED', 3);
+values(3, 'OS', 'IE11 data might not be accessible after upgrading to Windows 11', 'NORMAL', 'RESOLVED', 3, 2);
 
 insert into bug
-values(4, 'microservice', 'Plays same episode again instead of playing the next one.', 'LOW', 'IN_PROGRESS', 1);
+values(4, 'microservice', 'Plays same episode again instead of playing the next one.', 'LOW', 'IN_PROGRESS', 1, 1);
 
 insert into bug
-values(5, 'OS', 'Files might persist after resetting a Windows device', 'NORMAL', 'IN_PROGRESS', 3);
+values(5, 'OS', 'Files might persist after resetting a Windows device', 'NORMAL', 'IN_PROGRESS', 3, 2);
 
 insert into bug
-values(6, 'OS', 'Snipping Tool and some built-in applications might not open or work as expected', 'LOW', 'RESOLVED', 5);
+values(6, 'OS', 'Snipping Tool and some built-in applications might not open or work as expected', 'LOW', 'RESOLVED', 5, 3);
 
 insert into bug
-values(7, 'OS', 'UI elements and drawing within some apps may not work as expected', 'HIGH', 'RESOLVED', 4);
+values(7, 'OS', 'UI elements and drawing within some apps may not work as expected', 'HIGH', 'RESOLVED', 4, 3);
 
 -- populate project_bug
 insert into project_bug

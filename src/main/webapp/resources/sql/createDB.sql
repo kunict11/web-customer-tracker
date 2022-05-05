@@ -41,6 +41,17 @@ name varchar(50),
 component varchar(20)
 );
 
+drop table if exists developer;
+create table developer (
+id int not null auto_increment primary key,
+first_name varchar(20), 
+last_name varchar(20), 
+email varchar(50),
+project_id int not null,
+foreign key(project_id)
+	references project(id)
+);
+
 drop table if exists bug;
 create table bug (
 id int auto_increment not null primary key,
@@ -49,8 +60,11 @@ description varchar(256),
 priority varchar(20),
 status varchar(20),
 customer_id int not null,
+developer_id int,
 foreign key(customer_id)
-	references customer(id)
+	references customer(id),
+foreign key(developer_id)
+	references developer(id)
 );
 
 drop table if exists project_bug;

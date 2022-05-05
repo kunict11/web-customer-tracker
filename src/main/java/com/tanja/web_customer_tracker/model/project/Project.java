@@ -13,9 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.tanja.web_customer_tracker.model.bug.Bug;
+import com.tanja.web_customer_tracker.model.developer.Developer;
 
 @Entity
 @Table(name = "project")
@@ -32,14 +34,19 @@ public class Project {
 	@Column(name = "component")
 	private String component;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "project_id")
+	private List<Developer> developers;
+	
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinTable(name = "project_bug", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "bug_id"))
 	private List<Bug> bugs;
 	
-	public Project(int id, String name, String component) {
+	public Project(int id, String name, String component, List<Developer> developers) {
 		this.id = id;
 		this.name = name;
 		this.component = component;
+		this.developers = developers;
 	}
 
 	public Project() {
@@ -82,6 +89,22 @@ public class Project {
 			bugs = new ArrayList<>();
 		}
 		bugs.add(bug);
+	}
+	
+	public List<Developer> getDevelopers() {
+		return developers;
+	}
+
+	public void setDevelopers(List<Developer> developers) {
+		this.developers = developers;
+	}
+	
+	public void addDeveloper(Developer dev) {
+		if (developers == null) {
+			developers = new ArrayList<>();
+		}
+		
+		developers.add(dev);
 	}
 
 	@Override
