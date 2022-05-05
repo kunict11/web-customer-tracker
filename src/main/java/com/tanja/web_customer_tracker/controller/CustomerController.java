@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.tanja.web_customer_tracker.model.Customer;
-import com.tanja.web_customer_tracker.service.CustomerService;
+import com.tanja.web_customer_tracker.model.customer.Customer;
+import com.tanja.web_customer_tracker.service.customer.CustomerService;
 
 @Controller
 @RequestMapping("/customer")

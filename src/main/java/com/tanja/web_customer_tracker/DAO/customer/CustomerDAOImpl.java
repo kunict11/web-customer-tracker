@@ -1,14 +1,15 @@
-package com.tanja.web_customer_tracker.DAO;
+package com.tanja.web_customer_tracker.DAO.customer;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.tanja.web_customer_tracker.model.Customer;
+import com.tanja.web_customer_tracker.model.customer.Customer;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
@@ -69,4 +70,23 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return c;
 	}
 
+	@Override
+	public Customer findByEmail(String email) {
+		
+		Session session = sf.getCurrentSession();
+		
+		session.beginTransaction();
+		
+		Query<Customer> query = session.createQuery("from Customer where email=:customerEmail", Customer.class);
+		query.setParameter("customerEmail", email);
+		Customer customer = query.uniqueResult();
+		Hibernate.initialize(customer.getReportedBugs());
+		
+		session.getTransaction().commit();
+		
+		return customer;
+	}
+
+	
+	
 }

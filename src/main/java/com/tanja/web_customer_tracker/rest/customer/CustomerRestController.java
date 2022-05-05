@@ -1,4 +1,4 @@
-package com.tanja.web_customer_tracker.rest;
+package com.tanja.web_customer_tracker.rest.customer;
 
 import java.util.List;
 
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tanja.web_customer_tracker.model.Customer;
-import com.tanja.web_customer_tracker.service.CustomerService;
+import com.tanja.web_customer_tracker.model.customer.Customer;
+import com.tanja.web_customer_tracker.service.customer.CustomerService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin
 @RequestMapping("/api")
 public class CustomerRestController {
 
@@ -44,6 +44,7 @@ public class CustomerRestController {
 	@PostMapping("/customers")
 	public Customer addCustomer(@RequestBody Customer customer) {
 		
+		customer.setId(0);	
 		customerService.addCustomer(customer);
 		
 		return customer;

@@ -1,8 +1,8 @@
-package com.tanja.web_customer_tracker.DAO;
+package com.tanja.web_customer_tracker.DAO.customer;
 
 import java.util.List;
 
-import com.tanja.web_customer_tracker.model.Customer;
+import com.tanja.web_customer_tracker.model.customer.Customer;
 
 
 public interface CustomerDAO {
@@ -14,5 +14,7 @@ public interface CustomerDAO {
 	public void saveCustomer(Customer c);
 	
 	public void deleteCustomer(int customerId);
+	
+	public Customer findByEmail(String email);
 
 }

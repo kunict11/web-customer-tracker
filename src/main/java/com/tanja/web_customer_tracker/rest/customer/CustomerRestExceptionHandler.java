@@ -1,4 +1,4 @@
-package com.tanja.web_customer_tracker.rest;
+package com.tanja.web_customer_tracker.rest.customer;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

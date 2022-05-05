@@ -1,5 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page import="com.tanja.web_customer_tracker.model.GenderEnum" %>
+<%@ page import="com.tanja.web_customer_tracker.model.customer.GenderEnum" %>
 
 <!DOCTYPE html>
 <html>

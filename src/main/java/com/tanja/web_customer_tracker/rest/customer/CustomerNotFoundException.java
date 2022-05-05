@@ -1,4 +1,4 @@
-package com.tanja.web_customer_tracker.rest;
+package com.tanja.web_customer_tracker.rest.customer;
 
 public class CustomerNotFoundException extends RuntimeException {
 

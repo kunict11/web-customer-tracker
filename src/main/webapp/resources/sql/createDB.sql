@@ -33,3 +33,33 @@ customer_details_id int not null,
 foreign key(customer_details_id) 
 	references customer_details(id)
 );
+
+drop table if exists project;
+create table project (
+id int auto_increment not null primary key,
+name varchar(50),
+component varchar(20)
+);
+
+drop table if exists bug;
+create table bug (
+id int auto_increment not null primary key,
+component varchar(20),
+description varchar(256),
+priority varchar(20),
+status varchar(20),
+customer_id int not null,
+foreign key(customer_id)
+	references customer(id)
+);
+
+drop table if exists project_bug;
+create table project_bug (
+project_id int not null,
+bug_id int not null,
+primary key(project_id, bug_id),
+foreign key(project_id) 
+	references project(id),
+foreign key(bug_id)
+	references bug(id)
+);
