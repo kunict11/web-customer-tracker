@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.tanja.web_customer_tracker.model.bug.Status" %>
 
 <!DOCTYPE html>
 
@@ -33,13 +34,19 @@
 						<th>Priority</th>
 						<th>Reported By</th>
 						<th>Status</th>
+						<th>Assigned developer</th>
 						<th> </th>
 					</tr>
 					
 					<c:forEach var="project" items="${projects}">
 						<c:forEach var="bug" items="${project.bugs}">	
 						
-						<c:url var="showStatus" value="/bug/bugStatus" >
+						<c:url var="resolveBug" value="/bug/resolveBug" >
+							<c:param name="bugId" value="${ bug.id }" />
+						</c:url>
+						
+						<c:url var="bugDetails" value="/bug/details" >
+							<c:param name="projectId" value="${ project.id }" />
 							<c:param name="bugId" value="${ bug.id }" />
 						</c:url>
 						
@@ -50,7 +57,19 @@
 								<td class="table-data"> ${bug.priority} </td>
 								<td class="table-data"> ${bug.customer.firstName} ${bug.customer.lastName} </td>
 								<td class="table-data"> ${bug.status}</td>
-								<td class="table-data"> <a href="${showStatus}">Edit status</a></td>
+								<td class="table-data">
+									<c:if test="${bug.status == Status.UNRESOLVED}">
+										<a href=${bugDetails}>Assign developer</a>
+									</c:if>
+									<c:if test="${bug.status != Status.UNRESOLVED}">
+										${bug.assignedDeveloper.firstName} ${bug.assignedDeveloper.lastName}
+									</c:if>
+								</td>
+								<td class="table-data">
+									<c:if test="${bug.status == Status.IN_PROGRESS}">
+										<a href="${resolveBug}">Resolve</a>
+									</c:if>
+								</td>
 							</tr>
 						</c:forEach>
 					</c:forEach>

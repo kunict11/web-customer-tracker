@@ -90,10 +90,10 @@ insert into bug
 values(5, 'OS', 'Files might persist after resetting a Windows device', 'NORMAL', 'IN_PROGRESS', 3, 2);
 
 insert into bug
-values(6, 'OS', 'Snipping Tool and some built-in applications might not open or work as expected', 'LOW', 'RESOLVED', 5, 3);
+values(6, 'OS', 'Snipping Tool and some built-in applications might not open or work as expected', 'LOW', 'UNRESOLVED', 5, null);
 
 insert into bug
-values(7, 'OS', 'UI elements and drawing within some apps may not work as expected', 'HIGH', 'RESOLVED', 4, 3);
+values(7, 'OS', 'UI elements and drawing within some apps may not work as expected', 'HIGH', 'UNRESOLVED', 4, null);
 
 -- populate project_bug
 insert into project_bug

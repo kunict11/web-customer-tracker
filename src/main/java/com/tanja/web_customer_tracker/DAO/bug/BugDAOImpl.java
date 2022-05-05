@@ -2,6 +2,7 @@ package com.tanja.web_customer_tracker.DAO.bug;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tanja.web_customer_tracker.model.bug.Bug;
+import com.tanja.web_customer_tracker.model.project.Project;
 
 @Repository
 public class BugDAOImpl implements BugDAO {
@@ -39,6 +41,7 @@ public class BugDAOImpl implements BugDAO {
 		session.beginTransaction();
 		
 		Bug bug = session.get(Bug.class, id);
+		Hibernate.initialize(bug.getProjects());
 		
 		session.getTransaction().commit();
 		
