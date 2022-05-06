@@ -30,7 +30,7 @@ public class CustomerRestController {
 	}
 	
 	@GetMapping("/customers/{id}")
-	public Customer getAllCustomers(@PathVariable int id) {
+	public Customer getCustomerById(@PathVariable int id) {
 		
 		Customer customer = customerService.getCustomerById(id);
 		
