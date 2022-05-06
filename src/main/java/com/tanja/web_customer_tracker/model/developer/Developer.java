@@ -5,7 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.tanja.web_customer_tracker.model.project.Project;
 
 @Entity
 @Table(name = "developer")
@@ -24,11 +28,16 @@ public class Developer {
 	
 	@Column(name = "email")
 	private String email;
+	
+	@ManyToOne
+	@JoinColumn(name = "project_id")
+	private Project project;
 
-	public Developer(String firstName, String lastName, String email) {
+	public Developer(String firstName, String lastName, String email, Project project) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.project = project;
 	}
 
 	public Developer() {
@@ -66,9 +75,17 @@ public class Developer {
 		this.email = email;
 	}
 
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
 	@Override
 	public String toString() {
-		return "Developer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
+		return "Developer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "project=" + project.getName() + "]";
 	}
 	
 }

@@ -8,8 +8,9 @@
     <body>
         <h1>Web Customer Tracker</h1>
         <a href="${pageContext.request.contextPath}/customer/list">Customer List</a>
-        <a href="${pageContext.request.contextPath}/project/reportBugForm">View projects and add bug</a>
+        <a href="${pageContext.request.contextPath}/developer/list">Developer List</a>
         <a href="${pageContext.request.contextPath}/project/bugList">Bug List</a>
+        <a href="${pageContext.request.contextPath}/project/reportBugForm">View projects and add bug</a>
 <%--         <% response.sendRedirect("customer/list"); %> --%>      
     </body>
 </html>
