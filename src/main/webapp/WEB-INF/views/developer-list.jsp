@@ -22,7 +22,7 @@
 		
 			<div id="content">
 			
-			<input type="button" class="add-button" value="Add developer" />
+			<input type="button" class="add-button" value="Add developer" onclick="window.location.href='showDevForm';return false;" />
 			
 				<table>
 					<tr>
@@ -51,7 +51,14 @@
 							<td> ${dev.firstName} </td>
 							<td> ${dev.lastName} </td>
 							<td> ${dev.email} </td>
-							<td> ${dev.project.name} </td>
+							<td>
+							<c:if test="${dev.project != null}">
+							 	${dev.project.name}
+							</c:if>
+							<c:if test="${dev.project == null}">
+							 	Not assigned to any project
+							</c:if>
+							 </td>
 							<td> 
 	<%-- 							<a class="action-btn" href="${updateCustomer}">Update</a>
 								<a class="action-btn" href="${deleteCustomer}" 

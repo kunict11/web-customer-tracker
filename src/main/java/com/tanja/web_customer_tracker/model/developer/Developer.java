@@ -1,5 +1,6 @@
 package com.tanja.web_customer_tracker.model.developer;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class Developer {
 	@Column(name = "email")
 	private String email;
 	
-	@ManyToOne
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "project_id")
 	private Project project;
 
@@ -85,7 +86,7 @@ public class Developer {
 
 	@Override
 	public String toString() {
-		return "Developer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "project=" + project.getName() + "]";
+		return "Developer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", project=" + project.getName() + "]";
 	}
 	
 }

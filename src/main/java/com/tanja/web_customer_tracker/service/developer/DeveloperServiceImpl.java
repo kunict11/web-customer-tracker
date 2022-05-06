@@ -27,6 +27,13 @@ public class DeveloperServiceImpl implements DeveloperService {
 	public List<Developer> getAllDevelopers() {
 		return devDao.getAllDevelopers();
 	}
+
+	@Override
+	@Transactional
+	public void saveDeveloper(Developer dev) {
+		devDao.saveDeveloper(dev);
+	}
+	
 	
 	
 }

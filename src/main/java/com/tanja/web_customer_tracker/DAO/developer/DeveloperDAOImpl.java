@@ -36,14 +36,29 @@ public class DeveloperDAOImpl implements DeveloperDAO {
 		
 		session.beginTransaction();
 		
-		Query<Developer> query = session.createQuery("from Developer order by project.name", Developer.class);
+		Query<Developer> query = session.createQuery("from Developer", Developer.class);
 		List<Developer> developers = query.getResultList();
+		
 		
 		session.getTransaction().commit();
 		
 		return developers;
 		
 	}
+
+	@Override
+	public void saveDeveloper(Developer developer) {
+		
+		Session session = sf.getCurrentSession();
+		
+		session.beginTransaction();
+		
+		session.save(developer);
+		
+		session.getTransaction().commit();		
+	}
+	
+	
 	
 	
 }

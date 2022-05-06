@@ -37,7 +37,7 @@ public class Project {
 	@Column(name = "component")
 	private String component;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "project_id")
 	private List<Developer> developers;
 
