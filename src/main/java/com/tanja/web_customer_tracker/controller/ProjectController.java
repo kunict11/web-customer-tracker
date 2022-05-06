@@ -72,8 +72,8 @@ public class ProjectController {
 		return "redirect:/project/bugList";
 	} 
 	
-	@RequestMapping("/details/{id}")
-	public String showCustomerDetails(@PathVariable int id, Model model) {
+	@RequestMapping("/details")
+	public String showCustomerDetails(@RequestParam("id") int id, Model model) {
 		
 		Project project = projectService.getProjectById(id);
 		

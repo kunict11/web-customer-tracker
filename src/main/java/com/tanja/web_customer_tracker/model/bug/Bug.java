@@ -19,6 +19,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tanja.web_customer_tracker.model.customer.Customer;
+import com.tanja.web_customer_tracker.model.developer.Developer;
 import com.tanja.web_customer_tracker.model.project.Project;
 
 @Entity
@@ -51,6 +52,10 @@ public class Bug {
 	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
+	
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinColumn(name = "developer_id")
+	private Developer assignedDeveloper;
 	
 	public Bug() {
 	}
@@ -130,6 +135,14 @@ public class Bug {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public Developer getAssignedDeveloper() {
+		return assignedDeveloper;
+	}
+
+	public void setAssignedDeveloper(Developer assignedDeveloper) {
+		this.assignedDeveloper = assignedDeveloper;
 	}
 
 	@Override

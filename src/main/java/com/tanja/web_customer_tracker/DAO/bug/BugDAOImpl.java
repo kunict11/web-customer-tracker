@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tanja.web_customer_tracker.model.bug.Bug;
+import com.tanja.web_customer_tracker.model.project.Project;
 
 @Repository
 public class BugDAOImpl implements BugDAO {
