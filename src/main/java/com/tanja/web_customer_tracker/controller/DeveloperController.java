@@ -74,5 +74,24 @@ public class DeveloperController {
 		
 		return "redirect:/developer/list";
 	}
+	
+	@RequestMapping("/showFormForUpdate")
+	public String showFormForUpdate(@RequestParam("devId") int devId, Model model) {
+		
+		Developer dev = developerService.getDeveloperById(devId);
+		List<Project> projects = projectService.getAllProjects(); 
+		
+		model.addAttribute("developer", dev);
+		model.addAttribute("projects", projects);
+		
+		return "add-developer";
+	}
 
+	@RequestMapping("/deleteDeveloper")
+	public String deleteDeveloper(@RequestParam("devId") int devId) {
+		
+		developerService.deleteDeveloperById(devId);
+
+		return "redirect:/developer/list";
+	}
 }

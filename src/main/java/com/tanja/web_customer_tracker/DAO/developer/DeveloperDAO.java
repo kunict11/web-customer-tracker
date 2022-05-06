@@ -12,4 +12,6 @@ public interface DeveloperDAO {
 	
 	public void saveDeveloper(Developer developer);
 	
+	public void deleteDeveloper(int id);
+	
 }

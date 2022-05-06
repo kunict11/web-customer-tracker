@@ -33,6 +33,11 @@ public class DeveloperServiceImpl implements DeveloperService {
 	public void saveDeveloper(Developer dev) {
 		devDao.saveDeveloper(dev);
 	}
+
+	@Override
+	public void deleteDeveloperById(int id) {
+		devDao.deleteDeveloper(id);
+	}
 	
 	
 	

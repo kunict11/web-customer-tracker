@@ -35,17 +35,14 @@
 					
 					<c:forEach var="dev" items="${developers}">	
 					
-	<%-- 					<c:url var="updateCustomer" value="/customer/showFormForUpdate" >
-							<c:param name="customerId" value="${ tempCustomer.id }" />
+	 					<c:url var="updateDeveloper" value="/developer/showFormForUpdate" >
+							<c:param name="devId" value="${ dev.id }" />
 						</c:url>
 						
-						<c:url var="deleteCustomer" value="/customer/deleteCustomer" >
-							<c:param name="customerId" value="${ tempCustomer.id }" />
+						<c:url var="deleteDeveloper" value="/developer/deleteDeveloper" >
+							<c:param name="devId" value="${ dev.id }" />
 						</c:url>
-						
-						<c:url var="showDetails" value="/customer/details" >
-							<c:param name="customerId" value="${ tempCustomer.id }" />
-						</c:url> --%>
+
 					
 						<tr>
 							<td> ${dev.firstName} </td>
@@ -60,11 +57,11 @@
 							</c:if>
 							 </td>
 							<td> 
-	<%-- 							<a class="action-btn" href="${updateCustomer}">Update</a>
-								<a class="action-btn" href="${deleteCustomer}" 
+	 							<a class="action-btn" href="${updateDeveloper}">Update</a>
+								<a class="action-btn" href="${deleteDeveloper}" 
 									onclick="if(!confirm('Are you sure?')) return false;">
 									Delete
-								</a> --%>							 
+								</a>							 
 							</td>
 						</tr>
 					</c:forEach>

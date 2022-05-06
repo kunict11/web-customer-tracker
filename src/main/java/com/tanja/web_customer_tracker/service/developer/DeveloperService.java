@@ -12,4 +12,6 @@ public interface DeveloperService {
 	
 	public void saveDeveloper(Developer dev);
 	
+	public void deleteDeveloperById(int id);
+	
 }

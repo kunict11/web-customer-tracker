@@ -53,9 +53,22 @@ public class DeveloperDAOImpl implements DeveloperDAO {
 		
 		session.beginTransaction();
 		
-		session.save(developer);
+		session.saveOrUpdate(developer);
 		
 		session.getTransaction().commit();		
+	}
+
+	@Override
+	public void deleteDeveloper(int id) {
+		Session session = sf.getCurrentSession();
+		
+		session.beginTransaction();
+		
+		Developer dev = session.get(Developer.class, id);
+		session.delete(dev);
+		
+		session.getTransaction().commit();	
+		
 	}
 	
 	
