@@ -1,5 +1,7 @@
 package com.tanja.web_customer_tracker.service.developer;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,23 @@ public class DeveloperServiceImpl implements DeveloperService {
 		return devDao.getDeveloperById(id);
 	}
 
+	@Override
+	@Transactional
+	public List<Developer> getAllDevelopers() {
+		return devDao.getAllDevelopers();
+	}
+
+	@Override
+	@Transactional
+	public void saveDeveloper(Developer dev) {
+		devDao.saveDeveloper(dev);
+	}
+
+	@Override
+	public void deleteDeveloperById(int id) {
+		devDao.deleteDeveloper(id);
+	}
+	
 	
 	
 }

@@ -47,7 +47,7 @@ id int not null auto_increment primary key,
 first_name varchar(20), 
 last_name varchar(20), 
 email varchar(50),
-project_id int not null,
+project_id int,
 foreign key(project_id)
 	references project(id)
 );

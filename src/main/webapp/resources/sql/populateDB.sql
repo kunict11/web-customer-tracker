@@ -71,7 +71,7 @@ insert into developer
 values(3, 'Jane', 'Doe', 'jane@microsoft.com', 3);
 
 insert into developer
-values(4, 'Sava', 'Savic', 'bob@adobe.com', 2);
+values(4, 'Sava', 'Savic', 'sava@adobe.com', 2);
 
 -- populate bug
 insert into bug

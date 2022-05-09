@@ -61,6 +61,14 @@ public class BugRestController {
 		return bug;
 	}
 	
+	@PutMapping("/bugs")
+	public Bug updateBug(@RequestBody Bug bug) {
+		
+		bugService.saveBug(bug);
+		
+		return bug;
+	}
+	
 	@DeleteMapping("/bugs/{id}")
 	public String deleteBug(@PathVariable("id") int id) {
 		
