@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tanja.web_customer_tracker.model.bug.Bug;
 import com.tanja.web_customer_tracker.model.customer.Customer;
+import com.tanja.web_customer_tracker.model.developer.Developer;
 import com.tanja.web_customer_tracker.model.project.Project;
 import com.tanja.web_customer_tracker.service.bug.BugService;
 import com.tanja.web_customer_tracker.service.customer.CustomerService;
+import com.tanja.web_customer_tracker.service.developer.DeveloperService;
 import com.tanja.web_customer_tracker.service.project.ProjectService;
 
 @RestController
@@ -30,6 +32,9 @@ public class BugRestController {
 	
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private DeveloperService developerService;
 	
 	@GetMapping("/bugs")
 	public List<Bug> getAllBugs() {
@@ -63,6 +68,10 @@ public class BugRestController {
 	
 	@PutMapping("/bugs")
 	public Bug updateBug(@RequestBody Bug bug) {
+		
+		Developer dev = developerService.getDeveloperById(bug.getAssignedDeveloper().getId());
+		
+		bug.setAssignedDeveloper(dev);
 		
 		bugService.saveBug(bug);
 		

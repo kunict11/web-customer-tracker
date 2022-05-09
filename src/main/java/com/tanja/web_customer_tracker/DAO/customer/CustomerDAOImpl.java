@@ -21,12 +21,17 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public List<Customer> getCustomers() {
 		
 		Session session = sf.getCurrentSession();
+		List<Customer> customers = null;
 		
-		session.beginTransaction();
-		
-		Query<Customer> query = session.createQuery("from Customer order by firstName", Customer.class);
-		List<Customer> customers = query.getResultList();
-		session.getTransaction().commit();
+		try {			
+			session.beginTransaction();
+			
+			Query<Customer> query = session.createQuery("from Customer order by firstName", Customer.class);
+			customers = query.getResultList();
+			session.getTransaction().commit();
+		} finally {
+			session.close();
+		}
 		
 		return customers;
 	}
@@ -35,36 +40,50 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public void saveCustomer(Customer c) {
 		Session session = sf.getCurrentSession();
 		
-		session.beginTransaction();
-		
-		session.saveOrUpdate(c);
-		
-		session.getTransaction().commit();
+		try {
+			session.beginTransaction();
+			
+			session.saveOrUpdate(c);
+			
+			session.getTransaction().commit();
+		} finally {
+			session.close();
+		}
 		
 	}
 
 	@Override
 	public void deleteCustomer(int customerId) {
 		Session session = sf.getCurrentSession();
+		Customer customerFromDB = null;
 		
-		session.beginTransaction();
-		
-		Customer customerFromDB = session.get(Customer.class, customerId);
-		
-		session.delete(customerFromDB);
-		
-		session.getTransaction().commit();
+		try {			
+			session.beginTransaction();
+			
+			customerFromDB = session.get(Customer.class, customerId);
+			
+			session.delete(customerFromDB);
+			
+			session.getTransaction().commit();
+		} finally {
+			session.close();
+		}
 		
 	}
 
 	@Override
 	public Customer getCustomer(int id) {
 		Session session = sf.getCurrentSession();
+		Customer c = null;
 		
-		session.beginTransaction();
-		
-		Customer c = session.get(Customer.class, id);
-		session.getTransaction().commit();
+		try {			
+			session.beginTransaction();
+			
+			c = session.get(Customer.class, id);
+			session.getTransaction().commit();
+		} finally {
+			session.close();
+		}
 		
 		
 		return c;
@@ -74,15 +93,20 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public Customer findByEmail(String email) {
 		
 		Session session = sf.getCurrentSession();
+		Customer customer = null; 
 		
-		session.beginTransaction();
-		
-		Query<Customer> query = session.createQuery("from Customer where email=:customerEmail", Customer.class);
-		query.setParameter("customerEmail", email);
-		Customer customer = query.uniqueResult();
-		Hibernate.initialize(customer.getReportedBugs());
-		
-		session.getTransaction().commit();
+		try {			
+			session.beginTransaction();
+			
+			Query<Customer> query = session.createQuery("from Customer where email=:customerEmail", Customer.class);
+			query.setParameter("customerEmail", email);
+			customer = query.uniqueResult();
+			Hibernate.initialize(customer.getReportedBugs());
+			
+			session.getTransaction().commit();
+		} finally {
+			session.close();
+		}
 		
 		return customer;
 	}

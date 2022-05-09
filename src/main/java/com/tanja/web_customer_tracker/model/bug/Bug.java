@@ -53,7 +53,7 @@ public class Bug {
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
-	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name = "developer_id")
 	private Developer assignedDeveloper;
 	

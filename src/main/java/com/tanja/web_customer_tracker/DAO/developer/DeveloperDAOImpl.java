@@ -20,12 +20,18 @@ public class DeveloperDAOImpl implements DeveloperDAO {
 	public Developer getDeveloperById(int id) {
 		
 		Session session = sf.getCurrentSession();
+		Developer dev = null;
 		
-		session.beginTransaction();
+		try {
+			session.beginTransaction();
+			
+			dev = session.get(Developer.class, id);
+			
+			session.getTransaction().commit();			
+		} finally {
+			session.close();
+		}
 		
-		Developer dev = session.get(Developer.class, id);
-		
-		session.getTransaction().commit();
 		return dev;
 	}
 
@@ -33,14 +39,20 @@ public class DeveloperDAOImpl implements DeveloperDAO {
 	public List<Developer> getAllDevelopers() {
 		
 		Session session = sf.getCurrentSession();
+		List<Developer> developers = null;
 		
-		session.beginTransaction();
-		
-		Query<Developer> query = session.createQuery("from Developer", Developer.class);
-		List<Developer> developers = query.getResultList();
-		
-		
-		session.getTransaction().commit();
+		try {
+			session.beginTransaction();
+			
+			Query<Developer> query = session.createQuery("from Developer", Developer.class);
+			developers = query.getResultList();
+			
+			
+			session.getTransaction().commit();		
+		} finally {
+			session.close();
+		}
+
 		
 		return developers;
 		
@@ -51,24 +63,31 @@ public class DeveloperDAOImpl implements DeveloperDAO {
 		
 		Session session = sf.getCurrentSession();
 		
-		session.beginTransaction();
-		
-		session.saveOrUpdate(developer);
-		
-		session.getTransaction().commit();		
+		try {			
+			session.beginTransaction();
+			
+			session.saveOrUpdate(developer);
+			
+			session.getTransaction().commit();		
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void deleteDeveloper(int id) {
 		Session session = sf.getCurrentSession();
+		Developer dev = null;
 		
-		session.beginTransaction();
-		
-		Developer dev = session.get(Developer.class, id);
-		session.delete(dev);
-		
-		session.getTransaction().commit();	
-		
+		try {
+			session.beginTransaction();
+			dev = session.get(Developer.class, id);
+			session.delete(dev);
+			
+			session.getTransaction().commit();				
+		} finally {
+			session.close();
+		}
 	}
 	
 	

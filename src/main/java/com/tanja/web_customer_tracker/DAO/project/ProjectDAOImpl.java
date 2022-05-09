@@ -21,13 +21,18 @@ public class ProjectDAOImpl implements ProjectDAO {
 	public List<Project> getAllProjects() {
 		
 		Session session = sf.getCurrentSession();
+		List<Project> projects = null; 
 		
-		session.beginTransaction();
-		
-		Query<Project> query = session.createQuery("from Project", Project.class);
-		List<Project> projects = query.getResultList();
-		
-		session.getTransaction().commit();		
+		try {
+			session.beginTransaction();
+			
+			Query<Project> query = session.createQuery("from Project", Project.class);
+			projects = query.getResultList();
+			
+			session.getTransaction().commit();		
+		} finally {
+			session.close();
+		}
 		
 		return projects;
 	}
@@ -36,12 +41,18 @@ public class ProjectDAOImpl implements ProjectDAO {
 	public Project getProject(int id) {
 		
 		Session session = sf.getCurrentSession();
+		Project project = null;
 		
-		session.beginTransaction();
-		
-		Project project = session.get(Project.class, id);
-		
-		session.getTransaction().commit();
+		try {
+			session.beginTransaction();
+			
+			project = session.get(Project.class, id);
+			
+			session.getTransaction().commit();		
+		} finally {
+			session.close();
+		}
+
 		
 		return project;
 	}
@@ -51,25 +62,35 @@ public class ProjectDAOImpl implements ProjectDAO {
 		
 		Session session = sf.getCurrentSession();
 		
-		session.beginTransaction();
-		
-		session.saveOrUpdate(project);
-		
-		session.getTransaction().commit();
+		try {
+			session.beginTransaction();
+			
+			session.saveOrUpdate(project);
+			
+			session.getTransaction().commit();
+			
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void deleteProject(int id) {
 		
 		Session session = sf.getCurrentSession();
+		Project project = null;
 		
-		session.beginTransaction();
-		
-		Project project = session.get(Project.class, id);
-		
-		session.delete(project);
-		
-		session.getTransaction().commit();
+		try {
+			session.beginTransaction();
+			
+			project = session.get(Project.class, id);
+			
+			session.delete(project);
+			
+			session.getTransaction().commit();
+		} finally {
+			session.close();
+		}
 		
 	}
 
@@ -77,18 +98,24 @@ public class ProjectDAOImpl implements ProjectDAO {
 	public List<Project> getAllProjectsWithBugs() {
 		
 		Session session = sf.getCurrentSession();
+		List<Project> projects = null;
 		
-		session.beginTransaction();
-		
-		Query<Project> query = session.createQuery("from Project order by name", Project.class);
-		List<Project> projects = query.getResultList();
-		
-		for (Project project : projects) {
-			Hibernate.initialize(project.getBugs());
+		try {
+			session.beginTransaction();
+			
+			Query<Project> query = session.createQuery("from Project order by name", Project.class);
+			projects = query.getResultList();
+			
+			for (Project project : projects) {
+				Hibernate.initialize(project.getBugs());
+			}
+			
+			session.getTransaction().commit();	
+			
+		} finally {
+			session.close();
 		}
-		
-		session.getTransaction().commit();		
-		
+	
 		return projects;
 	}
 

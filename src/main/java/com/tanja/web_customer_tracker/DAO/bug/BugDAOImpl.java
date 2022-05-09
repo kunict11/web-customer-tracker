@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tanja.web_customer_tracker.model.bug.Bug;
-import com.tanja.web_customer_tracker.model.project.Project;
 
 @Repository
 public class BugDAOImpl implements BugDAO {
@@ -23,16 +22,22 @@ public class BugDAOImpl implements BugDAO {
 		
 		Session session = sf.getCurrentSession();
 		
-		session.beginTransaction();
+		List<Bug> bugs = null;
 		
-		Query<Bug> query = session.createQuery("from Bug", Bug.class);
-		List<Bug> bugs = query.getResultList();
-		
-		for (Bug bug : bugs) {
-			Hibernate.initialize(bug.getProjects());
+		try {
+			session.beginTransaction();
+			
+			Query<Bug> query = session.createQuery("from Bug", Bug.class);
+			bugs = query.getResultList();
+			
+			for (Bug bug : bugs) {
+				Hibernate.initialize(bug.getProjects());
+			}
+			
+			session.getTransaction().commit();
+		} finally {
+			session.close();
 		}
-		
-		session.getTransaction().commit();
 		
 		return bugs;
 	}
@@ -41,13 +46,18 @@ public class BugDAOImpl implements BugDAO {
 	public Bug getBug(int id) {
 		
 		Session session = sf.getCurrentSession();
+		Bug bug = null;
 		
-		session.beginTransaction();
-		
-		Bug bug = session.get(Bug.class, id);
-		Hibernate.initialize(bug.getProjects());
-		
-		session.getTransaction().commit();
+		try {			
+			session.beginTransaction();
+			
+			bug = session.get(Bug.class, id);
+			Hibernate.initialize(bug.getProjects());
+			
+			session.getTransaction().commit();
+		} finally {
+			session.close();
+		}
 		
 		return bug;
 	}
@@ -57,12 +67,15 @@ public class BugDAOImpl implements BugDAO {
 		
 		Session session = sf.getCurrentSession();
 		
-		session.beginTransaction();
-		
-		session.saveOrUpdate(bug);
-		
-		session.getTransaction().commit();
-		
+		try {
+			session.beginTransaction();
+			
+			session.saveOrUpdate(bug);
+			
+			session.getTransaction().commit();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
@@ -70,12 +83,16 @@ public class BugDAOImpl implements BugDAO {
 		
 		Session session = sf.getCurrentSession();
 		
-		session.beginTransaction();
-		
-		Bug bug = session.get(Bug.class, id);
-		session.delete(bug);
-		
-		session.getTransaction().commit();
+		try {			
+			session.beginTransaction();
+			
+			Bug bug = session.get(Bug.class, id);
+			session.delete(bug);
+			
+			session.getTransaction().commit();
+		} finally {
+			session.close();
+		}
 	}
 	
 	
