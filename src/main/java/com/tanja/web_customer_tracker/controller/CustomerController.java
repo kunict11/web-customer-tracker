@@ -61,7 +61,9 @@ public class CustomerController {
 	
 	@RequestMapping(path = "/addCustomer", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	public String addCustomer(@ModelAttribute("customer") Customer theCustomer, @RequestPart("photo") MultipartFile photo) {
-        
+        System.out.println("customer "+ theCustomer);
+        System.out.println("details " + theCustomer.getCustomerDetails());
+        System.out.println("photo " + photo);
         try {
 			theCustomer.getCustomerDetails().setProfilePicture(photo.getBytes());
 		} catch (IOException e) {

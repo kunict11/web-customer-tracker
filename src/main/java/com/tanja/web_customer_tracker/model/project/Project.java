@@ -24,6 +24,7 @@ import com.tanja.web_customer_tracker.model.bug.Bug;
 import com.tanja.web_customer_tracker.model.developer.Developer;
 
 @JsonIdentityInfo(
+		scope = Project.class,
 		generator = ObjectIdGenerators.PropertyGenerator.class, 
 		property = "id")
 @Entity

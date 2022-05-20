@@ -32,7 +32,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 		} finally {
 			session.close();
 		}
-		
 		return customers;
 	}
 

@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.tanja.web_customer_tracker.model.project.Project;
 
 @JsonIdentityInfo(
+		scope = Developer.class,
 		generator = ObjectIdGenerators.PropertyGenerator.class, 
 		property = "id")
 @Entity
