@@ -41,7 +41,6 @@ public class MvcConfiguration implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		// TODO Auto-generated method stub
 		registry
 			.addResourceHandler("/resources/**")
 			.addResourceLocations("/resources/");
@@ -49,7 +48,6 @@ public class MvcConfiguration implements WebMvcConfigurer {
 	
 	@Bean
 	public DataSource dataSource() {
-		// create connection pool
 		
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 

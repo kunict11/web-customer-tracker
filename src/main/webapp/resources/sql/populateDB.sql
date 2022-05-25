@@ -35,20 +35,32 @@ insert into customer_details
 values(5, 'Diesel Strasse 101, Frankfurt, Germany', '1992-07-31', 'MALE', @image_hex);
 
 -- populate customer
-insert into customer
-values(1, 'Pera', 'Peric', 'pera@gmail.com', 1);
+--
+-- default password: user123
+-- password genereted on website https://bcrypt-generator.com/
+--
+insert into users
+values
+(1, 'Pera', 'Peric', 'pera@gmail.com','{bcrypt}$2a$12$Tf60j.gyK4Y3GagjukLqgewa/iJkvL4DmyH08Ww1AZPYBl96GK1z6', 1),
+(2, 'Zika', 'Zikic', 'zika@gmail.com','{bcrypt}$2a$12$Tf60j.gyK4Y3GagjukLqgewa/iJkvL4DmyH08Ww1AZPYBl96GK1z6', 1),
+(3, 'Marko', 'Markovic', 'marko@gmail.com','{bcrypt}$2a$12$Tf60j.gyK4Y3GagjukLqgewa/iJkvL4DmyH08Ww1AZPYBl96GK1z6', 1),
+(4, 'Boba', 'Bobic', 'boba@gmail.com','{bcrypt}$2a$12$Tf60j.gyK4Y3GagjukLqgewa/iJkvL4DmyH08Ww1AZPYBl96GK1z6', 1),
+(5, 'Mile', 'Milic', 'mile@gmail.com','{bcrypt}$2a$12$Tf60j.gyK4Y3GagjukLqgewa/iJkvL4DmyH08Ww1AZPYBl96GK1z6', 1);
 
 insert into customer
-values(2, 'Zika', 'Zikic', 'zika@gmail.com', 2);
+values(1, 1);
 
 insert into customer
-values(3, 'Marko', 'Markovic', 'marko@gmail.com', 3);
+values(2, 2);
 
 insert into customer
-values(4, 'Boba', 'Bobic', 'boba@gmail.com', 4);
+values(3, 3);
 
 insert into customer
-values(5, 'Mile', 'Milic', 'mile@gmail.com', 5);
+values(4, 4);
+
+insert into customer
+values(5, 5);
 
 -- populate project
 insert into project 
@@ -61,17 +73,28 @@ insert into project
 values(3, 'Windows', 'OS');
 
 -- populate developer
-insert into developer
-values(1, 'Bob', 'Bobbins', 'bob@netflix.com', 1);
+--
+-- default password: dev123
+-- password genereted on website https://bcrypt-generator.com/
+--
+insert into users
+values
+(6, 'Bob', 'Bobbins', 'bob@netflix.com', '{bcrypt}$2a$12$Y8Jb4gSXs7sqFv.Mj8XzKuXbjUuHHLvxl4JVWL71y1fYKPQiVc346', 1),
+(7, 'John', 'Doe', 'john@microsoft.com', '{bcrypt}$2a$12$Y8Jb4gSXs7sqFv.Mj8XzKuXbjUuHHLvxl4JVWL71y1fYKPQiVc346', 1),
+(8, 'Jane', 'Doe', 'jane@microsoft.com', '{bcrypt}$2a$12$Y8Jb4gSXs7sqFv.Mj8XzKuXbjUuHHLvxl4JVWL71y1fYKPQiVc346', 1),
+(9, 'Sava', 'Savic', 'sava@adobe.com', '{bcrypt}$2a$12$Y8Jb4gSXs7sqFv.Mj8XzKuXbjUuHHLvxl4JVWL71y1fYKPQiVc346', 1);
 
 insert into developer
-values(2, 'John', 'Doe', 'john@microsoft.com', 3);
+values(6, 1);
 
 insert into developer
-values(3, 'Jane', 'Doe', 'jane@microsoft.com', 3);
+values(7, 3);
 
 insert into developer
-values(4, 'Sava', 'Savic', 'sava@adobe.com', 2);
+values(8, 3);
+
+insert into developer
+values(9, 2);
 
 -- populate bug
 insert into bug
@@ -81,13 +104,13 @@ insert into bug
 values(2, 'monolith', 'In Photoshop 23.0, text changes do not update.', 'HIGH', 'UNRESOLVED', 1, null);
 
 insert into bug
-values(3, 'OS', 'IE11 data might not be accessible after upgrading to Windows 11', 'NORMAL', 'RESOLVED', 3, 2);
+values(3, 'OS', 'IE11 data might not be accessible after upgrading to Windows 11', 'NORMAL', 'RESOLVED', 3, 7);
 
 insert into bug
-values(4, 'microservice', 'Plays same episode again instead of playing the next one.', 'LOW', 'IN_PROGRESS', 1, 1);
+values(4, 'microservice', 'Plays same episode again instead of playing the next one.', 'LOW', 'IN_PROGRESS', 1, 6);
 
 insert into bug
-values(5, 'OS', 'Files might persist after resetting a Windows device', 'NORMAL', 'IN_PROGRESS', 3, 2);
+values(5, 'OS', 'Files might persist after resetting a Windows device', 'NORMAL', 'IN_PROGRESS', 3, 7);
 
 insert into bug
 values(6, 'OS', 'Snipping Tool and some built-in applications might not open or work as expected', 'LOW', 'UNRESOLVED', 5, null);
@@ -116,3 +139,16 @@ values(3, 6);
 
 insert into project_bug
 values(3, 7);
+
+insert into authorities
+values
+('pera@gmail.com', 'ROLE_CUSTOMER'),
+('zika@gmail.com', 'ROLE_CUSTOMER'),
+('marko@gmail.com', 'ROLE_CUSTOMER'),
+('boba@gmail.com', 'ROLE_CUSTOMER'),
+('mile@gmail.com', 'ROLE_CUSTOMER'),
+('bob@netflix.com', 'ROLE_DEVELOPER'),
+('john@microsoft.com', 'ROLE_DEVELOPER'),
+('jane@microsoft.com', 'ROLE_DEVELOPER'),
+('sava@adobe.com', 'ROLE_DEVELOPER')
+

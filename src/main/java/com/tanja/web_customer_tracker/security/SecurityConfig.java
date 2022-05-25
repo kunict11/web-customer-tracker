@@ -22,23 +22,33 @@ import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+import com.tanja.web_customer_tracker.service.UserService;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
-
+	
 //	@Bean
 //	public PasswordEncoder passwordEncoder() {
 //		return new BCryptPasswordEncoder();
 //	}
-//	
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		UserBuilder users = User.withDefaultPasswordEncoder();
-		auth.inMemoryAuthentication().withUser(users.username("admin@admin.com").password("admin").roles("ADMIN"));
-//		auth.jdbcAuthentication().dataSource(dataSource);
+//		UserBuilder users = User.builder();
+//		auth
+//			.inMemoryAuthentication()
+//			.passwordEncoder(passwordEncoder())
+//			.withUser(users.username("admin@admin.com").password(passwordEncoder().encode("admin")).roles("ADMIN"));
+		auth
+			.jdbcAuthentication()
+//			.passwordEncoder(passwordEncoder())
+			.dataSource(dataSource)
+			.usersByUsernameQuery("select email, password, enabled from users where email=?")
+			.authoritiesByUsernameQuery("select email, authority from authorities where email=?");
 	}
 	
 	@Override
@@ -50,9 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.authenticated()
 		.and()
 		.formLogin()
-		.loginPage("/login")
-		.loginProcessingUrl("/processLogin")
-		.defaultSuccessUrl("/")
+//		.loginPage("/login")
+//		.loginProcessingUrl("/processLogin")
+//		.defaultSuccessUrl("/")
 		.permitAll()
 		.and()
 		.logout()
