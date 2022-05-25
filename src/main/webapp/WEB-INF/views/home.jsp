@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <html>
     <head>
@@ -16,6 +17,12 @@
         |
         <a href="${pageContext.request.contextPath}/project/reportBugForm">View projects and add bug</a>
 <%--         <% response.sendRedirect("customer/list"); %> --%>   
+
+		<security:authorize access="hasRole('DEVELOPER')">
+		<h3>
+			Hi developer!
+		</h3>
+		</security:authorize>
 
 		<form:form action="${pageContext.request.contextPath}/logout" method="POST">
 			<input type="submit" value="Log out" />

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,6 +22,7 @@ import com.tanja.web_customer_tracker.model.bug.Bug;
 
 @Entity
 @Table(name = "customer")
+@PrimaryKeyJoinColumn(name = "id")
 public class Customer extends User{
 	
 	@OneToOne(cascade = CascadeType.ALL)
