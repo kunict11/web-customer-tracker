@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -43,16 +44,17 @@
 							<td><form:input path="email" /></td>
 						</tr>
 						
-						
- 						<tr>
-							<td><label>Project:</label></td>
-							<td>
-								<form:select path="project.id">
-									<form:option value="0" label="Select project" />
-									<form:options items="${projects}" itemValue="id" itemLabel="name" />
-								</form:select>
-							</td>
-						</tr>
+						<security:authorize access="hasRole('MANAGER') || hasRole('ADMIN')">
+	 						<tr>
+								<td><label>Project:</label></td>
+								<td>
+									<form:select path="project.id">
+										<form:option value="0" label="Select project" />
+										<form:options items="${projects}" itemValue="id" itemLabel="name" />
+									</form:select>
+								</td>
+							</tr>
+						</security:authorize>
 	
 						<tr>
 							<td><label></label></td>

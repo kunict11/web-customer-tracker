@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.tanja.web_customer_tracker.model.bug.Priority" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -17,6 +18,15 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
+	    <a href="${pageContext.request.contextPath}/customer/list">Customer List</a>
+	    <security:authorize access="!hasRole('CUSTOMER')">
+        |
+        <a href="${pageContext.request.contextPath}/developer/list">Developer List</a>
+        </security:authorize>
+        |
+        <a href="${pageContext.request.contextPath}/project/bugList">Bug List</a>
+        |
+        <a href="${pageContext.request.contextPath}/project/reportBugForm">View projects and add bug</a>
 		<div class="split-columns">
 			<div class="project-container">
 				<h2>Available projects:</h2>
@@ -52,11 +62,6 @@
 					</div>
 					
 					<div class="field-wrap">
-						<label>Customer e-mail: </label>
-						<input type="email" name="customerEmail"/>
-					</div>
-					
-					<div class="field-wrap">
 						<label>Priority: </label>
 						<div style="margin-top:5px;">
 							<c:forEach var="priority" items="${Priority.values()}">
@@ -69,7 +74,9 @@
 					<input class="submit-btn" type="submit" value="Report" />
 				</form:form>
 			</div>
-
+			<p>
+				<a class="action-btn" href="${pageContext.request.contextPath}">&#8592; Back to Home</a>
+			</p>
 		</div>
 	</body>
 </html>

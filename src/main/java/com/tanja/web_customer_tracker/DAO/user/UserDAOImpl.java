@@ -1,6 +1,7 @@
 package com.tanja.web_customer_tracker.DAO.user;
 
 import org.hibernate.Hibernate;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

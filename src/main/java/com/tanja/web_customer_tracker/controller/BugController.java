@@ -62,7 +62,7 @@ public class BugController {
 		return "bug-details";
 	} 
 	
-	@RequestMapping("assignDeveloper")
+	@RequestMapping("/assignDeveloper")
 	public String assignDeveloper(@RequestParam("bugId") int bugId, @RequestParam("devId") int devId) {
 		
 		Developer dev = developerService.getDeveloperById(devId);

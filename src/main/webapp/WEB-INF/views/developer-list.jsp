@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,6 +12,15 @@
 		  href="${pageContext.request.contextPath}/resources/styles/style.css" />
 	</head>
 	<body>
+		<a href="${pageContext.request.contextPath}/customer/list">Customer List</a>
+		<security:authorize access="!hasRole('CUSTOMER')">
+        |
+        <a href="${pageContext.request.contextPath}/developer/list">Developer List</a>
+        </security:authorize>
+        |
+        <a href="${pageContext.request.contextPath}/project/bugList">Bug List</a>
+        |
+        <a href="${pageContext.request.contextPath}/project/reportBugForm">View projects and add bug</a>
 			<div id="wrapper">
 			<div id="header" style="background: #4c64c2">
 				<h2>Developer List</h2>
@@ -22,7 +32,9 @@
 		
 			<div id="content">
 			
-			<input type="button" class="add-button" value="Add developer" onclick="window.location.href='showDevForm';return false;" />
+			<security:authorize access="hasRole('MANAGER') || hasRole('ADMIN')">
+				<input type="button" class="add-button" value="Add developer" onclick="window.location.href='showDevForm';return false;" />
+			</security:authorize>
 			
 				<table>
 					<tr>
@@ -58,10 +70,12 @@
 							 </td>
 							<td> 
 	 							<a class="action-btn" href="${updateDeveloper}">Update</a>
-								<a class="action-btn" href="${deleteDeveloper}" 
-									onclick="if(!confirm('Are you sure?')) return false;">
-									Delete
-								</a>							 
+	 							<security:authorize access="hasRole('ADMIN')">
+									<a class="action-btn" href="${deleteDeveloper}" 
+										onclick="if(!confirm('Are you sure?')) return false;">
+										Delete
+									</a>							 
+	 							</security:authorize>
 							</td>
 						</tr>
 					</c:forEach>
@@ -69,7 +83,9 @@
 				</table>
 					
 			</div>
-		
+			<p>
+				<a class="action-btn" href="${pageContext.request.contextPath}">&#8592; Back to Home</a>
+			</p>
 		</div>
 	</body>
 </html>

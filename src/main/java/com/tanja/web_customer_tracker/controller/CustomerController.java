@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,7 +48,6 @@ public class CustomerController {
 		List<Customer> customers = customerService.getAllCustomers();
 		
 		model.addAttribute("customers", customers);
-		
 		return "customer-list";
 	}
 	
@@ -70,6 +70,21 @@ public class CustomerController {
 		return "add-customer";
 	}
 	
+	@RequestMapping(path = "/updateCustomer", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+	public String addCustomer(@ModelAttribute("customer") Customer theCustomer, @RequestPart("photo") MultipartFile photo) {
+        System.out.println("customer "+ theCustomer);
+        System.out.println("details " + theCustomer.getCustomerDetails());
+        System.out.println("photo " + photo);
+        try {
+			theCustomer.getCustomerDetails().setProfilePicture(photo.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
+		customerService.addCustomer(theCustomer);
+		
+		return "redirect:/customer/list";
+	}
 	
 	@RequestMapping("/deleteCustomer")
 	public String deleteCustomer(@RequestParam("customerId") int id) {

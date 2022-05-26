@@ -10,8 +10,10 @@
     <body>
         <h1>Web Customer Tracker</h1>
         <a href="${pageContext.request.contextPath}/customer/list">Customer List</a>
+        <security:authorize access="!hasRole('CUSTOMER')">
         |
         <a href="${pageContext.request.contextPath}/developer/list">Developer List</a>
+        </security:authorize>
         |
         <a href="${pageContext.request.contextPath}/project/bugList">Bug List</a>
         |

@@ -4,6 +4,7 @@ package com.tanja.web_customer_tracker.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -52,14 +53,14 @@ public class ProjectController {
 	}
 	
 	@RequestMapping("/reportBug")
-	public String reportBug(@ModelAttribute("bug") Bug bug, @RequestParam("selectedProject") int projectId, @RequestParam("customerEmail") String email) {
+	public String reportBug(@ModelAttribute("bug") Bug bug, @RequestParam("selectedProject") int projectId) {
 				
 		Project project = projectService.getProjectById(projectId);
 		
 		bug.setId(0);
 		bug.setStatus(Status.UNRESOLVED);
 		bug.addProject(project);
-		
+		String email = SecurityContextHolder.getContext().getAuthentication().getName();
 		Customer customer = customerService.getCustomerByEmail(email);
 		
 		if (customer == null) {

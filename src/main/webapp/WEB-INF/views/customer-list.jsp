@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 
 <!DOCTYPE html>
 
@@ -16,7 +18,15 @@
 </head>
 
 <body>
-
+    <a href="${pageContext.request.contextPath}/customer/list">Customer List</a>
+    <security:authorize access="!hasRole('CUSTOMER')">
+    |
+    <a href="${pageContext.request.contextPath}/developer/list">Developer List</a>
+    </security:authorize>
+    |
+    <a href="${pageContext.request.contextPath}/project/bugList">Bug List</a>
+    |
+    <a href="${pageContext.request.contextPath}/project/reportBugForm">View projects and add bug</a>
 	<div id="wrapper">
 		<div id="header">
 			<h2>CRM - Customer Relationship Manager</h2>
@@ -27,8 +37,6 @@
 	
 	
 		<div id="content">
-		
-		<input type="button" class="add-button" value="Add customer" onclick="window.location.href='customerForm';return false;" />
 		
 			<!--  add our html table here -->
 		
@@ -61,11 +69,15 @@
 						<td> ${tempCustomer.lastName} </td>
 						<td> ${tempCustomer.email} </td>
 						<td> 
+						<c:if test="${SecurityContextHolder.getContext().getAuthentication().getName().equals(tempCustomer.email)}">
 							<a class="action-btn" href="${updateCustomer}">Update</a>
+						</c:if>
+						<security:authorize access="hasRole('ADMIN')">
 							<a class="action-btn" href="${deleteCustomer}" 
 								onclick="if(!confirm('Are you sure?')) return false;">
 								Delete
-							</a>							 
+							</a>	
+						</security:authorize>						 
 						</td>
 						<td>
 							<a href="${showDetails}">Details</a>
@@ -76,7 +88,9 @@
 			</table>
 				
 		</div>
-	
+		<p>
+			<a class="action-btn" href="${pageContext.request.contextPath}">&#8592; Back to Home</a>
+		</p>
 	</div>
 
 </body>

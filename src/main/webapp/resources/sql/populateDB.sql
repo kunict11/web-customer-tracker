@@ -157,5 +157,28 @@ values
 (6, 3),
 (7, 3),
 (8, 3),
-(9, 3)
+(9, 3);
 
+-- insert admin and managers
+-- managers passwords: manager123
+--
+insert into users
+values 
+(11, 'Zile', 'Zilic', 'admin@admin.com','$2a$12$mevIDrWRvHg9qh/eR3QL4ubknETAcNch/uga2Z9iyjjnpp0S/byyO', 1),
+(12, 'Sara', 'Saric', 'sara@microsoft.com','$2a$12$TzTd60.l5fb1dDy9vIbvxeYWu.FKsyNsHv8ZyP5RVTln9WheRIHaG', 1),
+(13, 'Joe', 'Smith', 'joe@adobe.com','$2a$12$TzTd60.l5fb1dDy9vIbvxeYWu.FKsyNsHv8ZyP5RVTln9WheRIHaG', 1),
+(14, 'Alice', 'Jones', 'alice@netflix.com','$2a$12$TzTd60.l5fb1dDy9vIbvxeYWu.FKsyNsHv8ZyP5RVTln9WheRIHaG', 1);
+
+-- add managers to projects
+insert into developer
+values
+(12, 3),
+(13, 2),
+(14, 1);
+
+insert into authorities
+values 
+(11, 1),
+(12, 2),
+(13, 2),
+(14, 2);

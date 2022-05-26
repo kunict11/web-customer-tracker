@@ -27,9 +27,10 @@
 	<div id="container">
 		<h3>Save Customer</h3>
 	
-		<form:form action="addCustomer" modelAttribute="customer" method="POST" enctype="multipart/form-data">
+		<form:form action="updateCustomer" modelAttribute="customer" method="POST" enctype="multipart/form-data">
 			<form:hidden path="id" />
 			<form:hidden path="customerDetails.id" />
+			<form:hidden path="password"/>
 			<table>
 				<tbody>
 					<tr>

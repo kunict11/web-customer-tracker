@@ -5,94 +5,77 @@
 <html>
 
 <head>
-	<title>Save Customer</title>
+	<title>Register</title>
 
-	<link type="text/css"
-		  rel="stylesheet"
-		  href="${pageContext.request.contextPath}/resources/styles/style.css">
-
-	<link type="text/css"
-		  rel="stylesheet"
-		  href="${pageContext.request.contextPath}/resources/styles/add-customer-style.css">
+	<!-- Bootstrap -->
+	<link rel="stylesheet"
+		 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	
+	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-	
-	<div id="wrapper">
-		<div id="header">
-			<h2>CRM - Customer Relationship Manager</h2>
-		</div>
-	</div>
+	<div>
+		
+		<div style="margin-top: 20px;"
+			class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
+			<div id="container">
+				<div class="panel-heading">
+					<div class="panel-title">Sign Up</div>
+				</div>
+				<div style="padding-top: 10px" class="panel-body">
+				<form:form action="${pageContext.request.contextPath}/addCustomer" modelAttribute="customer" method="POST" enctype="multipart/form-data" class="form-horizontal">
+					<form:hidden path="id" />
+					<form:hidden path="customerDetails.id" />
 
-	<div id="container">
-		<h3>Save Customer</h3>
-	
-		<form:form action="${pageContext.request.contextPath}/addCustomer" modelAttribute="customer" method="POST" enctype="multipart/form-data">
-			<form:hidden path="id" />
-			<form:hidden path="customerDetails.id" />
-			<table>
-				<tbody>
-					<tr>
-						<td><label>First name:</label></td>
-						<td><form:input path="firstName" /></td>
-					</tr>
-				
-					<tr>
-						<td><label>Last name:</label></td>
-						<td><form:input path="lastName" /></td>
-					</tr>
-
-					<tr>
-						<td><label>Email:</label></td>
-						<td><form:input type="email" path="email" /></td>
-					</tr>
-										<tr>
-						<td><label>Password:</label></td>
-						<td><form:input type="password" path="password" /></td>
-					</tr>
-					
-					<tr>
-						<td><label>Address:</label></td>
-						<td><form:input path="customerDetails.address" /></td>
-					</tr>
-					
-					<tr>
-						<td><label>Birthday:</label></td>
-						<td><form:input type="date" path="customerDetails.birthday" /></td>
-					</tr>
-					
-					<tr>
-						<td><label>Gender:</label></td>
-						<td>
-							<form:select path="customerDetails.gender">
+						<div style="margin-bottom: 10px" class="input-group">
+							<label>First name:</label>
+							<form:input path="firstName" class="form-control" />
+						</div>
+						<div style="margin-bottom: 10px" class="input-group">
+							<label>Last name:</label>
+							<form:input path="lastName" class="form-control" />
+						</div>
+		
+						<div style="margin-bottom: 10px" class="input-group">
+							<label>Email:</label>
+							<form:input type="email" path="email" class="form-control" />
+						</div>
+						<div style="margin-bottom: 10px" class="input-group">
+							<label>Password:</label>
+							<form:input type="password" path="password" class="form-control" />
+						</div>
+						<div style="margin-bottom: 10px" class="input-group">
+								<label>Address:</label>
+								<form:input path="customerDetails.address" class="form-control" />
+						</div>
+						<div style="margin-bottom: 10px" class="input-group">
+							<label>Birthday:</label>
+							<form:input type="date" path="customerDetails.birthday" class="form-control" />
+						</div>
+						<div style="margin-bottom: 10px" class="input-group">
+							<label>Gender:</label>
+							<form:select path="customerDetails.gender" class="form-control">
 								<form:options items="${GenderEnum.values()}" />
 							</form:select>
-						</td>
-					</tr>
-					
-					<tr>
-						<td><label>Profile picture:</label></td>
-						<td><input type="file" name="photo"/></td>
-					</tr>
+						</div>
+						<div style="margin-bottom: 10px" class="input-group">
+							<label>Profile picture:</label>
+							<input type="file" name="photo" class="form-control"/>
+						</div>
+						
+						<div style="margin-top: 10px" class="form-group">						
+							<div class="col-sm-6 controls">
+								<input type="submit" class="btn btn-success" value="Register" />
+							</div>
+						</div>
 
-					<tr>
-						<td><label></label></td>
-						<td><input type="submit" value="Save" class="save" /></td>
-					</tr>
-
-				
-				</tbody>
-			</table>
-		
-		
-		</form:form>
-	
-		<div style="clear; both;"></div>
-		
-		<p>
-			<a class="action-btn" href="${pageContext.request.contextPath}/customer/list">&#8592; Back to List</a>
-		</p>
-	
+				</form:form>
+			</div>
+			</div>
+		</div>
 	</div>
 
 </body>
