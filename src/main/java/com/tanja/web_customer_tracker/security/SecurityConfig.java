@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,25 +31,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
+	@Autowired
+	private UserService userService;
 	
-//	@Bean
-//	public PasswordEncoder passwordEncoder() {
-//		return new BCryptPasswordEncoder();
-//	}
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	public DaoAuthenticationProvider authProvider() {
+		DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+		auth.setUserDetailsService(userService);
+		auth.setPasswordEncoder(passwordEncoder());
+		return auth;
+	}
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		UserBuilder users = User.builder();
-//		auth
-//			.inMemoryAuthentication()
-//			.passwordEncoder(passwordEncoder())
-//			.withUser(users.username("admin@admin.com").password(passwordEncoder().encode("admin")).roles("ADMIN"));
-		auth
-			.jdbcAuthentication()
-//			.passwordEncoder(passwordEncoder())
-			.dataSource(dataSource)
-			.usersByUsernameQuery("select email, password, enabled from users where email=?")
-			.authoritiesByUsernameQuery("select email, authority from authorities where email=?");
+		auth.authenticationProvider(authProvider());
 	}
 	
 	@Override
@@ -56,6 +57,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		System.out.println("authtjrhsjfks");
 		
 		http.authorizeRequests()
+		.antMatchers("/register")
+		.permitAll()
+		.and()
+		.authorizeRequests()
+		.antMatchers("/addCustomer")
+		.permitAll()
 		.anyRequest()
 		.authenticated()
 		.and()
@@ -66,7 +73,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.permitAll()
 		.and()
 		.logout()
-		.permitAll();
+		.permitAll()
+		.and()
+		.csrf()
+		.disable();
 	}
 		
 }

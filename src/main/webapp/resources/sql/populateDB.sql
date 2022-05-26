@@ -41,11 +41,11 @@ values(5, 'Diesel Strasse 101, Frankfurt, Germany', '1992-07-31', 'MALE', @image
 --
 insert into users
 values
-(1, 'Pera', 'Peric', 'pera@gmail.com','{bcrypt}$2a$12$Tf60j.gyK4Y3GagjukLqgewa/iJkvL4DmyH08Ww1AZPYBl96GK1z6', 1),
-(2, 'Zika', 'Zikic', 'zika@gmail.com','{bcrypt}$2a$12$Tf60j.gyK4Y3GagjukLqgewa/iJkvL4DmyH08Ww1AZPYBl96GK1z6', 1),
-(3, 'Marko', 'Markovic', 'marko@gmail.com','{bcrypt}$2a$12$Tf60j.gyK4Y3GagjukLqgewa/iJkvL4DmyH08Ww1AZPYBl96GK1z6', 1),
-(4, 'Boba', 'Bobic', 'boba@gmail.com','{bcrypt}$2a$12$Tf60j.gyK4Y3GagjukLqgewa/iJkvL4DmyH08Ww1AZPYBl96GK1z6', 1),
-(5, 'Mile', 'Milic', 'mile@gmail.com','{bcrypt}$2a$12$Tf60j.gyK4Y3GagjukLqgewa/iJkvL4DmyH08Ww1AZPYBl96GK1z6', 1);
+(1, 'Pera', 'Peric', 'pera@gmail.com','$2a$12$Tf60j.gyK4Y3GagjukLqgewa/iJkvL4DmyH08Ww1AZPYBl96GK1z6', 1),
+(2, 'Zika', 'Zikic', 'zika@gmail.com','$2a$12$Tf60j.gyK4Y3GagjukLqgewa/iJkvL4DmyH08Ww1AZPYBl96GK1z6', 1),
+(3, 'Marko', 'Markovic', 'marko@gmail.com','$2a$12$Tf60j.gyK4Y3GagjukLqgewa/iJkvL4DmyH08Ww1AZPYBl96GK1z6', 1),
+(4, 'Boba', 'Bobic', 'boba@gmail.com','$2a$10$NmKjY/LfmI14MxyYlcicnuD09TWjOblycgu35VQZ.ElPdyuhNxova', 1),
+(5, 'Mile', 'Milic', 'mile@gmail.com','$2a$12$Tf60j.gyK4Y3GagjukLqgewa/iJkvL4DmyH08Ww1AZPYBl96GK1z6', 1);
 
 insert into customer
 values(1, 1);
@@ -79,10 +79,10 @@ values(3, 'Windows', 'OS');
 --
 insert into users
 values
-(6, 'Bob', 'Bobbins', 'bob@netflix.com', '{bcrypt}$2a$12$Y8Jb4gSXs7sqFv.Mj8XzKuXbjUuHHLvxl4JVWL71y1fYKPQiVc346', 1),
-(7, 'John', 'Doe', 'john@microsoft.com', '{bcrypt}$2a$12$Y8Jb4gSXs7sqFv.Mj8XzKuXbjUuHHLvxl4JVWL71y1fYKPQiVc346', 1),
-(8, 'Jane', 'Doe', 'jane@microsoft.com', '{bcrypt}$2a$12$Y8Jb4gSXs7sqFv.Mj8XzKuXbjUuHHLvxl4JVWL71y1fYKPQiVc346', 1),
-(9, 'Sava', 'Savic', 'sava@adobe.com', '{bcrypt}$2a$12$Y8Jb4gSXs7sqFv.Mj8XzKuXbjUuHHLvxl4JVWL71y1fYKPQiVc346', 1);
+(6, 'Bob', 'Bobbins', 'bob@netflix.com', '$2a$12$Y8Jb4gSXs7sqFv.Mj8XzKuXbjUuHHLvxl4JVWL71y1fYKPQiVc346', 1),
+(7, 'John', 'Doe', 'john@microsoft.com', '$2a$12$Y8Jb4gSXs7sqFv.Mj8XzKuXbjUuHHLvxl4JVWL71y1fYKPQiVc346', 1),
+(8, 'Jane', 'Doe', 'jane@microsoft.com', '$2a$12$Y8Jb4gSXs7sqFv.Mj8XzKuXbjUuHHLvxl4JVWL71y1fYKPQiVc346', 1),
+(9, 'Sava', 'Savic', 'sava@adobe.com', '$2a$12$Y8Jb4gSXs7sqFv.Mj8XzKuXbjUuHHLvxl4JVWL71y1fYKPQiVc346', 1);
 
 insert into developer
 values(6, 1);
@@ -140,15 +140,22 @@ values(3, 6);
 insert into project_bug
 values(3, 7);
 
+insert into role 
+values
+(1, 'ROLE_ADMIN'),
+(2, 'ROLE_MANAGER'),
+(3, 'ROLE_DEVELOPER'),
+(4, 'ROLE_CUSTOMER');
+
 insert into authorities
 values
-('pera@gmail.com', 'ROLE_CUSTOMER'),
-('zika@gmail.com', 'ROLE_CUSTOMER'),
-('marko@gmail.com', 'ROLE_CUSTOMER'),
-('boba@gmail.com', 'ROLE_CUSTOMER'),
-('mile@gmail.com', 'ROLE_CUSTOMER'),
-('bob@netflix.com', 'ROLE_DEVELOPER'),
-('john@microsoft.com', 'ROLE_DEVELOPER'),
-('jane@microsoft.com', 'ROLE_DEVELOPER'),
-('sava@adobe.com', 'ROLE_DEVELOPER')
+(1, 4),
+(2, 4),
+(3, 4),
+(4, 4),
+(5, 4),
+(6, 3),
+(7, 3),
+(8, 3),
+(9, 3)
 

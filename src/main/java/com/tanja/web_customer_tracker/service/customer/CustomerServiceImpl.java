@@ -1,5 +1,6 @@
 package com.tanja.web_customer_tracker.service.customer;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tanja.web_customer_tracker.DAO.customer.CustomerDAO;
+import com.tanja.web_customer_tracker.DAO.role.RoleDAO;
 import com.tanja.web_customer_tracker.model.customer.Customer;
 
 @Service

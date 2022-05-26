@@ -1,5 +1,6 @@
 package com.tanja.web_customer_tracker.DAO.user;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -25,6 +26,7 @@ public class UserDAOImpl implements UserDAO {
 			Query<User> query = session.createQuery("from User where email=:userEmail", User.class);
 			query.setParameter("userEmail", email);
 			user = query.uniqueResult();
+			Hibernate.initialize(user.getRoles());
 			
 			session.getTransaction().commit();
 			

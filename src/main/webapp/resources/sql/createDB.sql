@@ -78,11 +78,19 @@ foreign key(bug_id)
 	references bug(id)
 );
 
+drop table if exists role;
+create table role (
+id int auto_increment not null primary key,
+name varchar(30) not null,
+unique key role_idx(name)
+);
+
 drop table if exists authorities;
 create table authorities (
-email varchar(50) not null,
-authority varchar(50) not null,
-unique key authority_idx(email, authority),
-foreign key(email)
-	references users(email)
+user_id int not null,
+role_id int not null,
+foreign key(user_id)
+	references users(id),
+foreign key(role_id)
+	references role(id)
 );

@@ -1,7 +1,9 @@
 package com.tanja.web_customer_tracker.model;
 
 import java.util.Collection;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -17,10 +22,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
-public class User implements UserDetails {
+public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
@@ -35,6 +40,10 @@ public class User implements UserDetails {
 	
 	@Column(name = "password")
 	private String password;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "authorities", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
+	private List<Role> roles;
 	
 	public User() {
 	}
@@ -85,40 +94,12 @@ public class User implements UserDetails {
 		this.password = password;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+	public List<Role> getRoles() {
+		return roles;
 	}
 
-	@Override
-	public String getUsername() {
-		return email;
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return false;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return false;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return false;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-
-	@Override
-	public String getName() {
-		return firstName + " " + lastName;
-	}
-	
 	
 }

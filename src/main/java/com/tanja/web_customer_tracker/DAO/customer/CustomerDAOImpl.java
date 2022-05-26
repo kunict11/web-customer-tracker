@@ -41,7 +41,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		try {
 			session.beginTransaction();
-			
 			session.saveOrUpdate(c);
 			
 			session.getTransaction().commit();
@@ -57,8 +56,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		Customer customerFromDB = null;
 		
 		try {			
-			session.beginTransaction();
-			
+
 			customerFromDB = session.get(Customer.class, customerId);
 			
 			session.delete(customerFromDB);

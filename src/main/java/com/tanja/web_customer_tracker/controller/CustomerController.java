@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -57,23 +58,6 @@ public class CustomerController {
 		model.addAttribute("customer", customer);
 		
 		return "add-customer";
-	}
-	
-	@RequestMapping(path = "/addCustomer", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-	public String addCustomer(@ModelAttribute("customer") Customer theCustomer, @RequestPart("photo") MultipartFile photo) {
-        System.out.println("customer "+ theCustomer);
-        System.out.println("details " + theCustomer.getCustomerDetails());
-        System.out.println("photo " + photo);
-        try {
-			theCustomer.getCustomerDetails().setProfilePicture(photo.getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        
-		customerService.addCustomer(theCustomer);
-		
-		return "redirect:/customer/list";
-			
 	}
 	
 	@RequestMapping("/showFormForUpdate")
